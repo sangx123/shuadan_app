@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.loan.AuthCenterActivity">
+    <com.xinfu.qianxiaozhuang.widget.CommonTitleBar
+        android:id="@+id/titlebar_withdraw"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:background="@color/white" />
+    <LinearLayout
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:background="@color/color_f5f5f5"
+        android:layout_height="30dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="基础认证"
+            android:textSize="@dimen/sp_11"
+            android:textColor="@color/color_30A3FF"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="必填，完成后可以查看借款额度"
+            android:textSize="@dimen/sp_10"
+            />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/toUserInfoLayout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:background="@color/white"
+        >
+        <LinearLayout
+            android:layout_marginLeft="15dp"
+            android:id="@+id/tv_title_layout0"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_acth_user_info"
+                android:layout_gravity="center_vertical"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="28dp"
+            android:layout_toRightOf="@id/tv_title_layout0"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/sp_16"
+                android:text="个人信息"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/sp_12"
+                android:text="请确保您的信息真实有效"
+                />
+        </LinearLayout>
+
+
+
+        <!--子view 的大小应该是 35dp x 35dp-->
+        <LinearLayout
+            android:id="@+id/layout_executor_count"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="9dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_executor_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="未认证"
+                android:textColor="@color/color_cccccc"
+                android:textSize="14sp"
+
+                />
+
+            <ImageView
+                android:id="@+id/img1"
+                android:layout_width="@dimen/dp_8"
+                android:layout_height="@dimen/dp_12"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:src="@drawable/ic_arrow_right_gray" />
+
+        </LinearLayout>
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/color_f5f5f5"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="9dp"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/toUserContactLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:background="@color/white"
+        >
+        <LinearLayout
+            android:layout_marginLeft="15dp"
+            android:id="@+id/tv_title_layout1"
+            android:orientation="horizontal"
+            android:layout_width="@dimen/dp_60"
+            android:gravity="center"
+            android:layout_height="@dimen/dp_60">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_acth_conact"
+                />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:id="@+id/tv_content1"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_60"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="28dp"
+            android:layout_toRightOf="@id/tv_title_layout1"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/sp_16"
+                android:text="紧急联系人"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/sp_12"
+                android:text="特殊情况可帮助我们联系到您"
+                />
+        </LinearLayout>
+
+
+
+        <!--子view 的大小应该是 35dp x 35dp-->
+        <LinearLayout
+            android:id="@+id/layout_executor_count1"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="9dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_executor_count1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_cccccc"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="未认证"
+
+                />
+            <ImageView
+                android:id="@+id/img2"
+                android:layout_width="@dimen/dp_8"
+                android:layout_height="@dimen/dp_12"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:src="@drawable/ic_arrow_right_gray" />
+
+        </LinearLayout>
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/color_E5E5E5"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="9dp"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/toUserBankLayout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:background="@color/white"
+        >
+        <LinearLayout
+            android:layout_marginLeft="15dp"
+            android:id="@+id/tv_title_layout"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60">
+            <ImageView
+                android:id="@+id/leftIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_acth_bank"
+                />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:id="@+id/tv_content2"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_60"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="28dp"
+            android:layout_toRightOf="@id/tv_title_layout"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/sp_16"
+                android:text="绑定银行卡"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/sp_12"
+                android:text="您的借款将打到这张卡上"
+                />
+        </LinearLayout>
+
+
+
+        <!--子view 的大小应该是 35dp x 35dp-->
+        <LinearLayout
+            android:id="@+id/layout_executor_count2"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="9dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_executor_count2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_cccccc"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="未认证"
+
+                />
+            <ImageView
+                android:id="@+id/img3"
+                android:layout_width="@dimen/dp_8"
+                android:layout_height="@dimen/dp_12"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:src="@drawable/ic_arrow_right_gray" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/choiceLayout"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/dp_6"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/choiceImg"
+                android:layout_width="@dimen/dp_12"
+                android:layout_height="@dimen/dp_12"
+                android:src="@drawable/ic_choice_yes"
+                android:scaleType="fitXY"
+                android:layout_marginLeft="@dimen/dp_5"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_11"
+                android:textColor="@color/color_939399"
+                android:text="我已阅读并同意"
+                />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/toWeb"
+            android:layout_gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_11"
+            android:textColor="@color/color_30A3FF"
+            android:text="《评估及推荐服务协议》"
+            />
+    </LinearLayout>
+    <Button
+
+        android:id="@+id/mBtn"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="43dp"
+        android:background="@drawable/btn_blue"
+        android:text="立即申请"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/white"
+        />
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_11"
+            android:textColor="@color/color_9DB1D6"
+            android:text="完成申请,既可"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_11"
+            android:textColor="@color/color_FDBC4D"
+            android:text="奖励38元"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_11"
+            android:textColor="@color/color_9DB1D6"
+            android:text="现金,可直接使用"
+            />
+    </LinearLayout>
+
+</LinearLayout>

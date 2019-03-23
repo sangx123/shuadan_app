@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_60"
+    android:background="@color/white"
+    android:paddingLeft="@dimen/dp_16"
+    android:paddingRight="@dimen/dp_16">
+
+    <ImageView
+        android:id="@+id/image_logo"
+        android:layout_width="@dimen/dp_22"
+        android:layout_height="@dimen/dp_17"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_kefu" />
+
+    <TextView
+        android:id="@+id/txt_platform"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp_2"
+        android:layout_toRightOf="@+id/image_logo"
+        android:text="@string/app_name"
+        android:textColor="@color/color_666666"
+        android:textSize="@dimen/sp_11" />
+    <LinearLayout
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/image_thumbnail1"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:scaleType="fitXY"
+            android:layout_margin="@dimen/dp_5"
+            android:src="@drawable/drawable_upload" />
+        <ImageView
+            android:layout_margin="@dimen/dp_5"
+            android:id="@+id/image_thumbnail2"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:scaleType="fitXY"
+            android:src="@drawable/drawable_upload" />
+        <ImageView
+            android:layout_margin="@dimen/dp_5"
+            android:id="@+id/image_thumbnail3"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:scaleType="fitXY"
+            android:src="@drawable/drawable_upload" />
+
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:id="@+id/layout_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_60"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/image_thumbnail"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:scaleType="fitXY"
+                android:src="@drawable/drawable_upload" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_2"
+                android:text="@string/upload_picture"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/sp_11" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="item_kinsfolk_relation">
+        <item>父亲</item>
+        <item>母亲</item>
+        <item>夫妻</item>
+        <item>子女</item>
+        <item>兄弟</item>
+        <item>姐妹</item>
+    </string-array>
+    <string-array name="item_social_relation">
+        <item>同事</item>
+        <item>亲戚</item>
+        <item>朋友</item>
+        <item>其他</item>
+    </string-array>
+
+</resources>

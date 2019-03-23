@@ -1,0 +1,202 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'packer'
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.xinfu.qianxiaozhuang"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+        flavorDimensions "versionCode"
+        useLibrary 'org.apache.http.legacy'
+
+    }
+    sourceSets {
+        main {
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    signingConfigs {
+        release {
+            keyAlias 'emucoo'
+            keyPassword 'emucoo'
+            storeFile file('../certificates/emucoo_key_v1.jks')
+            storePassword 'emucoo'
+            v2SigningEnabled true
+            v1SigningEnabled true
+        }
+        debug {
+            keyAlias 'emucoo'
+            keyPassword 'emucoo'
+            storeFile file('../certificates/emucoo_key_v1.jks')
+            storePassword 'emucoo'
+            v2SigningEnabled true
+            v1SigningEnabled true
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            useProguard true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue "string", "jinkens_app", System.getenv("jinkens_app") ?: ""
+
+        }
+        debug {
+            minifyEnabled true
+            shrinkResources false
+            zipAlignEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+            resValue "string", "jinkens_app", System.getenv("jinkens_app") ?: ""
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+    lintOptions {
+        abortOnError false
+    }
+    productFlavors {
+
+        /*开发*/
+        DEV {
+
+//            buildConfigField("String", "HOST_URL", "\"http://47.110.198.243/\"")
+            buildConfigField("String", "HOST_URL", "\"http://192.168.0.254:8080/qianxiaozhuang/\"")
+
+        }
+        /*生产*/
+        PRO {
+//            buildConfigField("String", "HOST_URL", "\"http://47.110.198.243/\"")
+            buildConfigField("String", "HOST_URL", "\"http://192.168.0.254:8080/qianxiaozhuang/\"")
+        }
+
+    }
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all {
+//            outputFileName = "emucoo-v${variant.mergedFlavor.versionName}-${variant.buildType.name}.apk".replaceAll("/", "-")
+//        }
+//    }
+    buildToolsVersion '28.0.3'
+}
+
+androidExtensions {
+    experimental = true
+}
+kapt {
+    arguments {
+        arg('eventBusIndex', 'com.xinfu.qianxiaozhuang.MEventBusIndex')
+        arg("objectbox.debug", true)
+    }
+}
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/repositories/releases"
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation rootProject.ext.kotlin_reflect
+    //引入anko
+    implementation rootProject.ext.kotlin_stdlib_jdk7
+    implementation rootProject.ext.anko_commons
+    // Anko Layouts
+    implementation rootProject.ext.constraint
+    implementation rootProject.ext.supportV4
+    implementation rootProject.ext.recyclerviewV7
+    implementation rootProject.ext.anko_sdk25
+    // sdk15, sdk19, sdk21, sdk23 are also available
+    implementation rootProject.ext.anko_appcompat_v7
+    implementation rootProject.ext.anko_sdk25_coroutines
+    implementation rootProject.ext.anko_appcompat_v7_coroutines
+    implementation rootProject.ext.supportAppCompat
+    implementation rootProject.ext.supportV4
+    implementation rootProject.ext.supportDesign
+    implementation rootProject.ext.supportCardView
+    implementation rootProject.ext.recyclerviewV7
+    implementation rootProject.ext.supportConstraintLayout
+    implementation rootProject.ext.rxbinding_kotlin
+    implementation rootProject.ext.rxbinding_support_v4_kotlin
+    implementation rootProject.ext.rxbinding_appcompat_v7_kotlin
+    implementation rootProject.ext.rxbinding_recyclerview_v7_kotlin
+    implementation rootProject.ext.rxbinding_leanback_v17_kotlin
+    implementation rootProject.ext.multidex
+    //eventbus
+    implementation rootProject.ext.eventbus
+    kapt rootProject.ext.eventbus_annotation_processor
+    // Retrofit库
+    implementation rootProject.ext.rxjava
+    implementation rootProject.ext.retrofit
+    implementation rootProject.ext.okhttp3_logging_interceptor
+    implementation rootProject.ext.adapter_rxjava2
+    implementation rootProject.ext.converter_gson
+    implementation rootProject.ext.rxandroid
+    implementation rootProject.ext.gson
+    implementation rootProject.ext.threetenabp
+    debugImplementation rootProject.ext.objectbox_android_objectbrowser
+    releaseImplementation rootProject.ext.objectbox_android
+    kapt rootProject.ext.objectbox_processor
+    implementation rootProject.ext.bugly
+    //jpush
+//    implementation rootProject.ext.jpush
+//    implementation rootProject.ext.jcore
+    //自动更新
+    implementation rootProject.ext.update_app
+    //BaseRecyclerViewAdapterHelper
+    implementation rootProject.ext.BaseRecyclerViewAdapterHelper
+    //rxpermissions
+    implementation rootProject.ext.rxpermissions
+    //switchbutton
+    implementation rootProject.ext.switchbutton
+    //packer
+    implementation rootProject.ext.packer
+    //阿里热更新
+    implementation rootProject.ext.hotfix
+    //shareperference
+    implementation rootProject.ext.hawk
+    //新增广告轮播组件
+    implementation rootProject.ext.bga_banner
+    //glide
+    implementation rootProject.ext.glide
+    annotationProcessor rootProject.ext.glide_compiler
+    //jsbridge
+    implementation rootProject.ext.jsbridge
+    //全面屏适配
+    implementation rootProject.ext.immersionbar
+    //图片选择框架
+    //implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+    implementation project(':materialrefreshlayoutlibrary')
+    implementation project(':coverflowlibrary')
+    implementation 'com.contrarywind:Android-PickerView:4.1.7'
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+
+}
+apply plugin: 'io.objectbox'
+//在正常的dependencies中添加如下依赖
+dependencies {
+//主要是针对kotlin
+    implementation rootProject.ext.objectbox_kotlin
+}

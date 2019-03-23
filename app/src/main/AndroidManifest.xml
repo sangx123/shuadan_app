@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.xinfu.qianxiaozhuang"
+    tools:ignore="MissingLeanbackLauncher">
+
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:name=".SophixStubApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:theme">
+
+        <activity android:name=".activity.my.MyBankListActivity"></activity>
+        <activity android:name=".activity.my.MyOrderActivity" />
+        <activity android:name=".activity.my.FeedbackActivity" />
+        <activity android:name=".api.TestApiActivity" />
+        <activity android:name=".activity.my.MyQianbaoActivity" />
+        <activity android:name=".activity.my.MyJiekuanjiluActivity" />
+        <activity android:name=".activity.NoticeWebActivity" />
+        <activity
+            android:name=".activity.loan.QueryBackMoneyActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".activity.my.ApplyLoanToBackMoneyResultActivity" />
+        <activity android:name=".activity.loan.ApplyLoanToBackMoneyUploadActivity" />
+        <activity android:name=".activity.loan.ApplyLoanToBackMoneyActivity" />
+        <activity android:name=".activity.loan.ApplyLoanToGetMoneyActivity" />
+        <activity android:name=".activity.loan.ApplyLoanReportActivity" />
+        <activity android:name=".activity.loan.ApplyLoanActivity" />
+        <activity android:name=".activity.loan.AuthUserBankActivity" />
+        <activity android:name=".activity.loan.AuthUserContactActivity" />
+        <activity android:name=".activity.loan.AuthUserInfoActivity" />
+        <activity android:name=".activity.loan.AuthCenterActivity" /> <!-- 适配全面屏 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" /> <!-- 适配华为(hua wei)刘海屏 -->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" /> <!-- 适配小米(xiao mi)刘海屏 -->
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
+
+        <activity
+            android:name=".activity.login.SplashActivity"
+            android:theme="@style/StartAppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.login.GuideActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:screenOrientation="portrait"
+            android:theme="@style/StartAppTheme" />
+        <activity
+            android:name=".activity.login.RegisterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.login.LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.login.CheckCodeLoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="25837261-1" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="7e63003a1e2d1e22aece0cd517f660be" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCGqrrwpOHGvCmIxSUrYQhm+iF8Y3hkNOA8w67CFvsnb1LzW/kzdz/NRPcDb7KXDiOjLtCxiZWKzrNvXx3mo8kHRPWbavQr2nJewnHSUz2uaV3Ih1I5Qeku6F7OsziE+YiEQMbHegAWbat4FO54NWUgI+fV69j5XwZQzUF55YSBh0GedJl4BLGCZDfgGepm9Rni/ODgj21Jm56YUlLiBmebtICiqndMMhixJVyE4x03uH8vxPOcxCZjsTc9KAdqTbU0ut/jltnqRRci3/P/ZJ1iwOf3NZwAADv0SE1OFjMfA+aoEagv0kNDQCcXb5TTtrQJiHWbj+fnFjeIF9iE+GjlAgMBAAECggEAcbbBXGsea16ABAnVNSgenDYjCJJGGve7UhQ7AZG+SrJqbS0A5UCRE5hkrPYo6/z4gtcJSqFPMYMRab371cIAAq9sZeyOemlfojy3OE8qCpjWpHoAKHFLolx9kjUsSL0dVfAM6mxOnqHE5QVnyQHtfpJTNgSNlyVyg9COtYvltCl0zV31UZpewH7NTN8ZYF00xuuUhDz7DAE59oH6J7E/k2z5s/xMYrESyPxists7BSHd4I4ckF73ukcVNwsO3+jnSb2FCWuohC8PESU867o+fztmV09FPVwFOqKM8vUKd066MwWB3DXuTXa60QkJfVVK5bLioM+ORNxvTIncYFwbEQKBgQC9ybMg58B59JWosiiqKqxToNUpQ/I4GcwJW2aoiOYxmZRIL8jgQlGyPEIbtkW2mK7SV72LkHdkqPdJzWUXag/z0uUJ4mupytW31VAih5bbKBsEgnYExV0c0bnaMABrXfDrI+eDeRZoa7/HIJpLviOEu6O5AyBVQQunAOKK5ndz2wKBgQC1phOPU0LKYwTXU8ficTYw/NtWD4QHA+ZtEUU4gUzh7IeFn6aw0ax9gLco+ksbFkpn8WqLanMFq2kfrtuvzCwuNZILMHrNBGco+ZJX/HFb5XKgLqYI0iiwRDdDACx6VSxJ6KQ+8bmRN88WtXEAciex9tfpfLBEMMnpXEFrQICSPwKBgCLWaXk60UwRp38l5O0HlEZtmXNPs6C0q410J638IzUrmdp+WwM/aTusb/4iQT25XS3jSTnbNO9XTL1RZKMdpvv81GoyE81BHGX4VBNijECCZiM3x24sxGDL5q+0a/9JaTXgi1jI22IjlTp6M5h/uIle4DjP6Bl+LSNkuDEDCR5NAoGAX0QZcAqntcMWr+OFqlHbrPeABPOgN5mpCLyNBCRz8Oz+6mqfno5om22dIcWbDDq1jSwEx9dtOaT7Ph2To/A9n4KC9JFZZhqQC+JQCQshXKPKaQ3uECRAKKmuHdqCeSogTybOtSBLRUjyuCMyf5xfCyu9cvvs6eZ4joXO3XP3ujsCgYAOH3Tkmd+sekkl1Mjy9TXEskZ4xKLY0oo/K+FnYONxHoH/bDarIjwqhLWiqvpN2NJNuqnuF6Q6zkT1krT/jJ2reolgbnYWBah2+L0pbuBmGpgGwuojWNvLMmos0jv+MwRla5Kkym6ozLxcIuXTpxnyspOpth6qCeOCFMTH96vqRw==" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

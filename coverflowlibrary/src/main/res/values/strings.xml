@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Coverflow</string>
+    <dimen name="pager_margin_two">5dp</dimen>
+</resources>

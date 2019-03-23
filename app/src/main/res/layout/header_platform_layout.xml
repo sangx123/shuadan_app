@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_get_money_1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="恭喜您获取预授信额度"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/mMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="0.00"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_30" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/mMoney"
+                android:layout_toRightOf="@+id/mMoney"
+                android:text="元"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_24"
+            android:layout_marginBottom="8dp">
+
+            <LinearLayout
+                android:id="@+id/mKefu"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_26"
+                    android:layout_height="@dimen/dp_19"
+                    android:src="@drawable/ic_kefu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_7"
+                    android:text="客服QQ"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_11" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="@dimen/dp_25"
+                android:layout_gravity="center_vertical"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:id="@+id/mDaojishi"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_26"
+                    android:layout_height="@dimen/dp_26"
+                    android:src="@drawable/ic_daojishi" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="倒计时"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_11" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_29"
+        android:src="@drawable/ic_tuisong_title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/dp_12"
+        android:text="若您在以下推荐平台没贷到款，可向平台申请退款"
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/sp_11" />
+
+</LinearLayout>

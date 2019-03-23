@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/myViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_85"
+        >
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="@dimen/dp_90"
+            android:layout_height="@dimen/dp_27"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/drawable_button_new_member_new"
+            android:gravity="center"
+            android:text="立即体验"
+            android:textColor="#F1941C"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="35dp"
+            android:textSize="@dimen/sp_14"
+            android:visibility="gone"
+             />
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:orientation="horizontal" />
+    </RelativeLayout>
+</RelativeLayout>

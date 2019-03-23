@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_centerInParent="true"
+        android:background="@drawable/drawable_dialog_loading"
+        android:padding="@dimen/dp_3">
+
+        <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:src="@mipmap/logo_loding" />-->
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:clickable="false"
+            android:indeterminateDrawable="@drawable/request_loding"
+            android:indeterminateDuration="1000" />
+        <!--<TextView-->
+        <!--android:id="@+id/id_dialog_loading_msg"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginTop="@dimen/account_fragment_dp_3"-->
+        <!--android:gravity="center"-->
+        <!--android:lineSpacingExtra="@dimen/account_fragment_dp_2"-->
+        <!--android:text="Loading..."-->
+        <!--android:visibility="gone"-->
+        <!--android:textColor="@color/custom_white"-->
+        <!--android:textSize="@dimen/account_fragment_sp_13" />-->
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.xinfu.qianxiaozhuang.widget.CommonTitleBar
+        android:id="@+id/titlebar_withdraw"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:background="@color/white" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0_5"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_cfcfcf" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_1">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.github.lzyzsd.jsbridge.BridgeWebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/layout_no_date_display"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center"-->
+            <!--android:visibility="gone">-->
+
+            <!--<ImageView-->
+            <!--android:id="@+id/image_no_date_display"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:src="@mipmap/img_no_date" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/txt_tip"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/image_no_date_display"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="@dimen/account_fragment_dp_21"-->
+            <!--android:gravity="center"-->
+            <!--android:text="@string/webview_net_connect_error"-->
+            <!--android:textColor="@color/custom_gray_light"-->
+            <!--android:textSize="@dimen/account_fragment_sp_14" />-->
+            <!--</RelativeLayout>-->
+
+        </FrameLayout>
+
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_2"
+            android:layout_gravity="center|center_vertical"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/drawable_progressbar"
+            android:secondaryProgress="0" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

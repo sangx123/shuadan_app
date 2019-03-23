@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7f7f7"
+    android:orientation="vertical">
+
+    <com.xinfu.qianxiaozhuang.widget.CommonTitleBar
+        android:id="@+id/titlebar_withdraw"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:background="@color/white"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp_16"
+        android:text="意见或建议"
+        android:textColor="#404040"
+        android:textSize="@dimen/sp_14"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_200"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_16">
+
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/drawable_shape_et_bg"
+            android:gravity="left|top"
+            android:hint="请输入您要咨询的问题，24小时内会给您回复！"
+            android:maxLength="200"
+            android:paddingLeft="@dimen/dp_11"
+            android:paddingTop="@dimen/dp_11"
+            android:paddingRight="@dimen/dp_11"
+            android:textSize="@dimen/sp_13" />
+
+        <TextView
+            android:id="@+id/text_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="@dimen/dp_11"
+            android:layout_marginBottom="@dimen/dp_11"
+            android:text="0/200"
+            android:textColor="#d0d0d0"
+            android:textSize="@dimen/sp_14" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txt_submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_43"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_50"
+        android:layout_marginRight="@dimen/dp_16"
+        android:background="@drawable/drawable_concer_login_blue_two"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_18" />
+
+</LinearLayout>
