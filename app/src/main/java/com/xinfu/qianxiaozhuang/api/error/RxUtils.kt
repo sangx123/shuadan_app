@@ -34,23 +34,21 @@ object RxUtils {
     private const val SERVICE_UNAVAILABLE = 503
     private const val GATEWAY_TIMEOUT = 504
     private const val ServerError = "YZ0001"
-
+    private const val ServerOK = "000"
 
    open fun <T : BaseResult<*>> handleGlobalError(activity: FragmentActivity): GlobalErrorTransformer<T> = GlobalErrorTransformer(
             // 通过onNext流中数据的状态进行操作
             onNextInterceptor = {
 
-                when (it.code) {
-                    LOGIN_TIME_OUT -> {
-                        Observable.error(LoginTimeOutException())
-                    }
-                    ServerError->{
+                when (it.respCode) {
+                    ServerOK->Observable.just(it)
+                    else-> {
                         activity.runOnUiThread {
-                            Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, it.respMsg, Toast.LENGTH_SHORT).show()
                         }
+
                         Observable.error(ServerException())
                     }
-                    else -> Observable.just(it)
                 }
             },
 

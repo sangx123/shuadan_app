@@ -2,6 +2,7 @@ package com.xinfu.qianxiaozhuang
 
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
+import com.mob.MobSDK
 import com.orhanobut.hawk.Hawk
 import com.tencent.bugly.crashreport.CrashReport
 import com.xinfu.qianxiaozhuang.BuildConfig
@@ -38,6 +39,8 @@ class App :Application(),AnkoLogger {
         CrashReport.initCrashReport(this, Config.BuglyAppID, true)
         //初始化shareperferrence
         Hawk.init(this).setLogInterceptor { message -> error{message} }.build()
+
+        MobSDK.init(this);
 //        JPushInterface.setDebugMode(true)
 //        JPushInterface.init(this)
 //        rootFileDir=File(Config.ROOT_PATH)

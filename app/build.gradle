@@ -7,6 +7,17 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 apply plugin: 'packer'
+
+// 添加插件
+apply plugin: 'com.mob.sdk'
+
+// 在MobSDK的扩展中注册SMSSDK的相关信息
+MobSDK {
+    appKey "29f87471998a1"
+    appSecret "82fc3afaca5c668782083aa155af9e6a"
+    SMSSDK {}
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -83,13 +94,13 @@ android {
         DEV {
 
 //            buildConfigField("String", "HOST_URL", "\"http://47.110.198.243/\"")
-            buildConfigField("String", "HOST_URL", "\"http://192.168.0.254:8080/qianxiaozhuang/\"")
+            buildConfigField("String", "HOST_URL", "\"http://192.168.42.10:8081/\"")
 
         }
         /*生产*/
         PRO {
 //            buildConfigField("String", "HOST_URL", "\"http://47.110.198.243/\"")
-            buildConfigField("String", "HOST_URL", "\"http://192.168.0.254:8080/qianxiaozhuang/\"")
+            buildConfigField("String", "HOST_URL", "\"http://188.131.235.188:8081/\"")
         }
 
     }
@@ -184,13 +195,15 @@ dependencies {
     annotationProcessor rootProject.ext.glide_compiler
     //jsbridge
     implementation rootProject.ext.jsbridge
+
     //全面屏适配
     implementation rootProject.ext.immersionbar
-    //图片选择框架
-    //implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
     implementation project(':materialrefreshlayoutlibrary')
     implementation project(':coverflowlibrary')
+
+    //滚轮控件
     implementation 'com.contrarywind:Android-PickerView:4.1.7'
+    //图片请求框架
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
 
 }

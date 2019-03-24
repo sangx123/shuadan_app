@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="@dimen/dp_60"
         android:layout_height="@dimen/dp_60"
-        android:layout_centerInParent="true"
+        android:gravity="center"
         android:background="@drawable/drawable_dialog_loading"
         android:padding="@dimen/dp_3">
 
@@ -18,12 +18,11 @@
         <!--android:src="@mipmap/logo_loding" />-->
 
         <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
             android:clickable="false"
             android:indeterminateDrawable="@drawable/request_loding"
-            android:indeterminateDuration="1000" />
+            android:indeterminateDuration="1200" />
         <!--<TextView-->
         <!--android:id="@+id/id_dialog_loading_msg"-->
         <!--android:layout_width="wrap_content"-->
@@ -36,6 +35,6 @@
         <!--android:visibility="gone"-->
         <!--android:textColor="@color/custom_white"-->
         <!--android:textSize="@dimen/account_fragment_sp_13" />-->
-    </RelativeLayout>
+    </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

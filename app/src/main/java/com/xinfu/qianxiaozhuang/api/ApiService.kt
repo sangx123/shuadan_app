@@ -2,6 +2,7 @@ package com.xinfu.qianxiaozhuang.api
 
 import com.xinfu.qianxiaozhuang.api.model.*
 import com.xinfu.qianxiaozhuang.api.model.params.*
+import com.xinfu.qianxiaozhuang.widgets.KeyValueLayout
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -19,9 +20,13 @@ interface ApiService {
     @POST("login/index")
     fun login(@Body model: LoginParam): Observable<BaseResult<LoginModel>>
 
+//    @InterfaceUseCase("注册")
+//    @POST("register/index")
+//    fun register(@Body model: RegisterParam): Observable<BaseResult<String>>
+
     @InterfaceUseCase("注册")
-    @POST("register/index")
-    fun register(@Body model: RegisterParam): Observable<BaseResult<String>>
+    @POST("/api/index/register")
+    fun register(@Body model: RegisterParam): Observable<BaseResult<KeyValueLayout.UserModel>>
 
     @InterfaceUseCase("获取注册验证码")
     @POST("register/sms")
