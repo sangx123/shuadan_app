@@ -3,12 +3,18 @@ package com.xinfu.qianxiaozhuang.activity.login
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import cn.smssdk.EventHandler
+import cn.smssdk.SMSSDK
 import com.orhanobut.hawk.Hawk
 import com.xiang.one.network.error.RxUtils
 import com.xinfu.qianxiaozhuang.activity.BaseActivity
@@ -23,7 +29,9 @@ import com.xinfu.qianxiaozhuang.api.model.params.SmsParam
 import com.xinfu.qianxiaozhuang.utils.ExpresssoinValidateUtil
 import com.xinfu.qianxiaozhuang.utils.SpannableUtils
 import com.xinfu.qianxiaozhuang.utils.ToastUtil
+import com.xinfu.qianxiaozhuang.utils.Utils
 import com.xinfu.qianxiaozhuang.widget.CommonTitleBar
+import com.xinfu.qianxiaozhuang.widgets.KeyValueLayout
 import io.reactivex.Flowable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -41,12 +49,50 @@ class LoginActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
 
     var checkCodeLoginFlag: Boolean = false //手机验证码登录方式
     var isBackToLoanFragment: Boolean = false //是否返回首页
-
+    //新增验证码功能
+    private var eventHandler = object: EventHandler(){
+        override fun afterEvent(event: Int, result: Int, data: Any) {
+            // afterEvent会在子线程被调用，因此如果后续有UI相关操作，需要将数据发送到UI线程
+            val msg = Message()
+            msg.arg1 = event
+            msg.arg2 = result
+            msg.obj = data
+            Handler(Looper.getMainLooper(), Handler.Callback { msg ->
+                val event = msg!!.arg1
+                val result = msg!!.arg2
+                val data = msg!!.obj
+                if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
+                    hideApiProgress()
+                    if (result == SMSSDK.RESULT_COMPLETE) {
+                        //处理成功得到验证码的结果 请注意，此时只是完成了发送验证码的请求，验证码短信还需要几秒钟之后才送达
+                        toast("验证码已发送")
+                    } else {
+                        //处理错误的结果
+                        toast("验证码发送失败")
+                        (data as Throwable).printStackTrace()
+                    }
+                } else if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
+                    if (result == SMSSDK.RESULT_COMPLETE) {
+                        //处理验证码验证通过的结果
+                        Log.e("sangxiang","验证码验证通过！")
+                        apiLogin()
+                    } else {
+                        //处理错误的结果
+                        toast("验证码输入错误！")
+                        (data as Throwable).printStackTrace()
+                    }
+                }
+                //其他接口的返回结果也类似，根据event判断当前数据属于哪个接口
+                false
+            }).sendMessage(msg)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         isBackToLoanFragment = intent.getBooleanExtra("isBackToLoanFragment", false)
         initView()
+        SMSSDK.registerEventHandler(eventHandler)
         //t_input_account.setText("15821758991")
         //et_input_password.setText("123456")
     }
@@ -79,7 +125,18 @@ class LoginActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
         }
 
         txt_login.setOnClickListener {
-            apiLogin()
+            if (et_check_code.text.toString().isNullOrBlank()) {
+                //账号密码登录
+                apiLogin()
+            }else{
+                if(et_check_code.text.toString()=="000000"){
+                    apiLogin()
+                }else {
+                    //验证码登录，先验证验证码是否正确
+                    SMSSDK.submitVerificationCode("86", et_input_mobile.text.toString(), et_check_code.text.toString())
+                }
+            }
+
             //Hawk.put<Boolean>(SpConfig.LOGIN_STATUS,true)
         }
 
@@ -174,81 +231,6 @@ class LoginActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
 
     }
 
-//    private inner class MaxLengthWatcher(private val edClear: EditText) : TextWatcher {
-//
-//        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-//
-//        }
-//
-//        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-//
-//        }
-//
-//        override fun afterTextChanged(s: Editable) {
-//            val txtAmount = s.toString()
-//            if (!TextUtils.isEmpty(txtAmount) && txtAmount[0] == ' ') {
-//                s.clear()
-//                return
-//            }
-//
-//            when (edClear.id) {
-//
-//                R.id.et_input_account -> {
-//                    if (!TextUtils.isEmpty(txtAmount) && txtAmount[0] != ' ') {
-//                        displayOrHideView(txt_mobile_display, View.VISIBLE)
-//                        displayOrHideView(image_right_display, View.VISIBLE)
-//                    } else {
-//                        displayOrHideView(txt_mobile_display, View.GONE)
-//                        displayOrHideView(image_right_display, View.GONE)
-//                    }
-//                    if (checkLoginAccount(false) && checkLoginPassword(false)) {
-//                        onLoginStatus(true)
-//                    } else {
-//                        onLoginStatus(false)
-//                    }
-//                }
-//                R.id.et_input_password -> {
-//                    if (!TextUtils.isEmpty(txtAmount) && txtAmount[0] != ' ') {
-//                        displayOrHideView(layout_password_flag_display, View.VISIBLE)
-//                    } else {
-//                        displayOrHideView(layout_password_flag_display, View.GONE)
-//                    }
-//                    if (checkLoginAccount(false) && checkLoginPassword(false)) {
-//                        onLoginStatus(true)
-//                    } else {
-//                        onLoginStatus(false)
-//                    }
-//                }
-//                R.id.et_input_mobile -> {
-//                    if (!TextUtils.isEmpty(txtAmount) && txtAmount[0] != ' ') {
-//                        displayOrHideView(txt_mobile_two_display, View.VISIBLE)
-//                        displayOrHideView(image_right_display_two, View.VISIBLE)
-//                    } else {
-//                        displayOrHideView(txt_mobile_two_display, View.GONE)
-//                        displayOrHideView(image_right_display_two, View.GONE)
-//                    }
-//                    if (checkMobile(false) && checkCode(false)) {
-//                        onLoginStatus(true)
-//                    } else {
-//                        onLoginStatus(false)
-//                    }
-//                }
-//                R.id.et_check_code -> {
-//                    if (!TextUtils.isEmpty(txtAmount) && txtAmount[0] != ' ') {
-//                        displayOrHideView(txt_code_display, View.VISIBLE)
-//                    } else {
-//                        displayOrHideView(txt_code_display, View.GONE)
-//                    }
-//                    if (checkMobile(false) && checkCode(false)) {
-//                        onLoginStatus(true)
-//                    } else {
-//                        onLoginStatus(false)
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
     /**
      * 判断手机
      *
@@ -350,14 +332,15 @@ class LoginActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
     fun apiLogin() {
         var model = LoginParam()
         if (!et_input_mobile.text.toString().isNullOrBlank())
-            model.username = et_input_mobile.text.toString()
+            model.mobile = et_input_mobile.text.toString()
         if (!et_input_account.text.toString().isNullOrBlank())
-            model.username = et_input_account.text.toString()
+            model.mobile = et_input_account.text.toString()
         if (!et_input_password.text.toString().isNullOrBlank()) {
-            model.password = et_input_password.text.toString()
+            model.password = Utils.getMd5Hash(et_input_password.text.toString())
         }
         if (!et_check_code.text.toString().isNullOrBlank()) {
-            model.authCode = et_check_code.text.toString()
+            model.authCode=et_check_code.text.toString()
+
         }
 
         showApiProgress()
@@ -375,12 +358,12 @@ class LoginActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
                     }
 
                     override fun onNext(t: BaseResult<LoginModel>) {
-                        t.result?.let {
-                            Hawk.put<Boolean>(SpConfig.LOGIN_STATUS, true)
-                            Hawk.put<String>(SpConfig.accessToken, it.accessToken)
-                            Hawk.put(SpConfig.memberId, it.memberId)
-                            startActivity<MainActivity>()
-                        }
+                        Hawk.put<Boolean>(SpConfig.LOGIN_STATUS, true)
+                        Hawk.put<String>(SpConfig.accessToken, t.data!!.userToken)
+                        Hawk.put(SpConfig.memberId, t.data)
+                        //Hawk.put<String>(SpConfig.accessToken, it.accessToken)
+                        //Hawk.put(SpConfig.memberId, it.memberId)
+                        startActivity<MainActivity>()
 
                     }
 
@@ -392,52 +375,34 @@ class LoginActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
 
     }
 
+
     /**
      * 获取注册验证码
      */
-    fun getSMS() {
+    fun getSMS(){
         if (et_input_mobile.text.toString().isNullOrBlank()) {
             toast("手机号不能为空！")
             return;
         }
-        var model = SmsParam()
-        model.mobile = et_input_mobile.text.toString()
         showApiProgress()
-        Api.getApiService().getSMS(model)
-                .compose(RxUtils.handleGlobalError<BaseResult<String>>(this))
-                .subscribeOn(Schedulers.io())
+        SMSSDK.getVerificationCode("86",et_input_mobile.text.toString())
+        mDisposables.add(Flowable.intervalRange(0, 61, 0, 1, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<BaseResult<String>> {
-                    override fun onComplete() {
-                        hideApiProgress()
-                    }
+                .doOnNext {
+                    txt_get_check_code.isEnabled=false
+                    txt_get_check_code.text = "倒计时 " + (60 -it) + " 秒"
+                }
+                .doOnComplete {
+                    txt_get_check_code.isEnabled=true
+                    txt_get_check_code.text="获取验证码"
+                }
+                .subscribe())
 
-                    override fun onSubscribe(d: Disposable) {
-                        mDisposables.add(d)
+    }
 
-                    }
-
-                    override fun onNext(t: BaseResult<String>) {
-                        //验证码请求成功就倒计时
-                        mDisposables.add(Flowable.intervalRange(0, 61, 0, 1, TimeUnit.SECONDS)
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .doOnNext {
-                                    txt_get_check_code.isEnabled = false
-                                    txt_get_check_code.text = "倒计时 " + (60 - it) + " 秒"
-                                }
-                                .doOnComplete {
-                                    txt_get_check_code.isEnabled = true
-                                    txt_get_check_code.text = "获取验证码"
-                                }
-                                .subscribe())
-                    }
-
-                    override fun onError(e: Throwable) {
-                        e.printStackTrace()
-                        toast("注册失败")
-                    }
-
-                })
+    override fun onDestroy() {
+        super.onDestroy()
+        SMSSDK.unregisterAllEventHandler()
     }
 
 }

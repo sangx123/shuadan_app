@@ -57,7 +57,7 @@ class MyFragment : BaseFragment(){
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initUI()
-        getData()
+        //getData()
     }
 
     private fun initUI() {

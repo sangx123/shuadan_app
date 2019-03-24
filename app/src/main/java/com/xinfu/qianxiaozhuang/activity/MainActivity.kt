@@ -46,9 +46,11 @@ class MainActivity : BaseActivity() {
             currentFragment?.let {
                 transaction.hide(it).show(targetFragment)
                 if (position == 1) {//首页
-                    (targetFragment as LoanFragment).onRefreshData()
+                    //todo 暂时先不刷新页面
+                    //(targetFragment as LoanFragment).onRefreshData()
                 } else if (position == 2) {//我的
-                    (targetFragment as MyFragment).onRefreshData()
+                    //todo 暂时先不刷新页面
+                   //(targetFragment as MyFragment).onRefreshData()
                 }
             }
         }

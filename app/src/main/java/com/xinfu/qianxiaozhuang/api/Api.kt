@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit
 import com.google.gson.GsonBuilder
 import com.google.gson.Gson
 import com.xinfu.qianxiaozhuang.BuildConfig
+import com.xinfu.qianxiaozhuang.SpConfig
 
 
 /**
@@ -42,7 +43,7 @@ class Api private constructor() {
         //手动创建一个OkHttpClient并设置超时时间
         httpClientBuilder = OkHttpClient.Builder()
         //mReqLogFp = App.requestLog
-        //httpClientBuilder.addInterceptor(AddHeaderInterceptor())
+        httpClientBuilder.addInterceptor(AddHeaderInterceptor())
         httpClientBuilder.addInterceptor(HttpLoggingInterceptor().setLevel(if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE))
         httpClientBuilder.readTimeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
         httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
@@ -133,9 +134,9 @@ class Api private constructor() {
     class AddHeaderInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
             val builder = chain.request().newBuilder()
-//        if (!Hawk.get<String>(SharePerferenceConfig.userToken).isNullOrBlank()) {
-//            builder.addHeader("userToken", Hawk.get<String>(SharePerferenceConfig.userToken))
-//        }
+        if (!Hawk.get<String>(SpConfig.accessToken).isNullOrBlank()) {
+            builder.addHeader("userToken", Hawk.get<String>(SpConfig.accessToken))
+        }
             //@Headers("Version:1", "ApiType:Android")
             builder.addHeader("Version", "1")
             builder.addHeader("ApiType", "Android")

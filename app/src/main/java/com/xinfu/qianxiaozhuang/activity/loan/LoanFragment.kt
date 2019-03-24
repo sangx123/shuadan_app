@@ -71,7 +71,7 @@ class LoanFragment : BaseFragment(), UniversalDialog.IHitSureCallBack {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         ininUI()
-        getData()
+        //getData()
         setProgressNum()
     }
 

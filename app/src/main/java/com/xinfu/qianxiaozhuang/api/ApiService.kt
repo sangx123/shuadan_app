@@ -2,7 +2,6 @@ package com.xinfu.qianxiaozhuang.api
 
 import com.xinfu.qianxiaozhuang.api.model.*
 import com.xinfu.qianxiaozhuang.api.model.params.*
-import com.xinfu.qianxiaozhuang.widgets.KeyValueLayout
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -13,11 +12,15 @@ import retrofit2.http.*
  */
 @JvmSuppressWildcards
 interface ApiService {
-    /**
-     * 登录相关
-     */
+//    /**
+//     * 登录相关
+//     */
+//    @InterfaceUseCase("登录")
+//    @POST("login/index")
+//    fun login(@Body model: LoginParam): Observable<BaseResult<LoginModel>>
+
     @InterfaceUseCase("登录")
-    @POST("login/index")
+    @POST("/api/index/login")
     fun login(@Body model: LoginParam): Observable<BaseResult<LoginModel>>
 
 //    @InterfaceUseCase("注册")
@@ -26,7 +29,7 @@ interface ApiService {
 
     @InterfaceUseCase("注册")
     @POST("/api/index/register")
-    fun register(@Body model: RegisterParam): Observable<BaseResult<KeyValueLayout.UserModel>>
+    fun register(@Body model: RegisterParam): Observable<BaseResult<LoginModel>>
 
     @InterfaceUseCase("获取注册验证码")
     @POST("register/sms")

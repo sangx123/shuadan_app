@@ -24,7 +24,6 @@ import com.xinfu.qianxiaozhuang.api.model.params.RegisterParam
 import com.xinfu.qianxiaozhuang.api.model.params.SmsParam
 import com.xinfu.qianxiaozhuang.utils.Utils
 import com.xinfu.qianxiaozhuang.widget.CommonTitleBar
-import com.xinfu.qianxiaozhuang.widgets.KeyValueLayout
 import io.reactivex.Flowable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -118,7 +117,7 @@ class RegisterActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
                 return@setOnClickListener
             }
             //验证验证码是否正确
-            if(et_check_code.text.toString()=="890828") {
+            if(et_check_code.text.toString()=="000000") {
                 //通用验证码不用校验
                 //直接注册
                 apiRegister()
@@ -234,10 +233,10 @@ class RegisterActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
         model.password= Utils.getMd5Hash(et_input_password.text.toString())
         showApiProgress()
         Api.getApiService().register(model)
-                .compose(RxUtils.handleGlobalError<BaseResult<KeyValueLayout.UserModel>>(this))
+                .compose(RxUtils.handleGlobalError<BaseResult<LoginModel>>(this))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<BaseResult<KeyValueLayout.UserModel>> {
+                .subscribe(object : Observer<BaseResult<LoginModel>> {
                     override fun onComplete() {
                         hideApiProgress()
                     }
@@ -246,7 +245,7 @@ class RegisterActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
                         mDisposables.add(d)
                     }
 
-                    override fun onNext(t: BaseResult<KeyValueLayout.UserModel>) {
+                    override fun onNext(t: BaseResult<LoginModel>) {
                         toast("注册成功！")
 //                        if(t.respCode== Config.SUCCESS) {
 //                            Hawk.put<String>(SharePerferenceConfig.user_phone, model.mobile)

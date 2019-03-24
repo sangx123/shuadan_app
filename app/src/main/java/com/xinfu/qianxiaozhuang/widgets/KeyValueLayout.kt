@@ -299,24 +299,24 @@ class KeyValueLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) 
 //        }
 //    }
 
-    @Parcelize
-    data class UserModel(
-             val contactsID: Long = 0,
-             val contactsName: String = "",
-             val contactsHeadUrl: String = ""
-    ) : Parcelable {
-        var selected = false; //用于界面显示，是否被选中
-
-        fun nextSelectedStatus() {
-            selected = !selected
-        }
-
-//    class Generator : GenerateFakeData<UserModel> {
-//        override fun onGenerateOne(): UserModel {
-//            return UserModel(NumberGenerate.gengerateLong(), NameGenerator.getName(), HeadPicGenerator.generateNotNull())
+//    @Parcelize
+//    data class UserModel(
+//             val contactsID: Long = 0,
+//             val contactsName: String = "",
+//             val contactsHeadUrl: String = ""
+//    ) : Parcelable {
+//        var selected = false; //用于界面显示，是否被选中
+//
+//        fun nextSelectedStatus() {
+//            selected = !selected
 //        }
+//
+////    class Generator : GenerateFakeData<UserModel> {
+////        override fun onGenerateOne(): UserModel {
+////            return UserModel(NumberGenerate.gengerateLong(), NameGenerator.getName(), HeadPicGenerator.generateNotNull())
+////        }
+////    }
 //    }
-    }
 }
 
 
