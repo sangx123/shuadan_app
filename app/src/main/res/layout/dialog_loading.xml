@@ -18,10 +18,10 @@
         <!--android:src="@mipmap/logo_loding" />-->
 
         <ProgressBar
-            android:layout_width="@dimen/dp_40"
-            android:layout_height="@dimen/dp_40"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
             android:clickable="false"
-            android:indeterminateDrawable="@drawable/request_loding"
+            android:indeterminateDrawable="@drawable/request_loading1"
             android:indeterminateDuration="1200" />
         <!--<TextView-->
         <!--android:id="@+id/id_dialog_loading_msg"-->

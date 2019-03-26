@@ -350,7 +350,7 @@ class LoginActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Observer<BaseResult<LoginModel>> {
                     override fun onComplete() {
-                        hideApiProgress()
+                        //hideApiProgress()
                     }
 
                     override fun onSubscribe(d: Disposable) {
@@ -361,8 +361,6 @@ class LoginActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
                         Hawk.put<Boolean>(SpConfig.LOGIN_STATUS, true)
                         Hawk.put<String>(SpConfig.accessToken, t.data!!.userToken)
                         Hawk.put(SpConfig.memberId, t.data)
-                        //Hawk.put<String>(SpConfig.accessToken, it.accessToken)
-                        //Hawk.put(SpConfig.memberId, it.memberId)
                         startActivity<MainActivity>()
 
                     }

@@ -1,0 +1,9 @@
+.gradle/4.10.1/fileHashes/resourceHashesCache.bin
+coverflowlibrary/build/
+materialrefreshlayoutlibrary/build/generated/not_namespaced_r_class_sources/debug/generateDebugRFile/out/android/arch/core/R.java
+materialrefreshlayoutlibrary/build/
+gradle/
+.gradle/
+build/
+local.properties
+.idea/

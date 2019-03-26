@@ -39,14 +39,18 @@ object RxUtils {
    open fun <T : BaseResult<*>> handleGlobalError(activity: FragmentActivity): GlobalErrorTransformer<T> = GlobalErrorTransformer(
             // 通过onNext流中数据的状态进行操作
             onNextInterceptor = {
-
+                activity.runOnUiThread {
+                    (activity as BaseActivity).hideApiProgress()
+                }
                 when (it.respCode) {
-                    ServerOK->Observable.just(it)
+                    ServerOK->
+                    {
+                        Observable.just(it)
+                    }
                     else-> {
                         activity.runOnUiThread {
                             Toast.makeText(activity, it.respMsg, Toast.LENGTH_SHORT).show()
                         }
-
                         Observable.error(ServerException())
                     }
                 }

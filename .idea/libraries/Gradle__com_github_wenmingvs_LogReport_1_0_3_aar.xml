@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.wenmingvs:LogReport:1.0.3@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/LogReport-1.0.3.aar/80211aeb20fcd585f6824717b26c5444/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/LogReport-1.0.3.aar/80211aeb20fcd585f6824717b26c5444/jars/libs/zip4j_1.3.2.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/LogReport-1.0.3.aar/80211aeb20fcd585f6824717b26c5444/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/LogReport-1.0.3.aar/80211aeb20fcd585f6824717b26c5444/jars/libs/activation.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/LogReport-1.0.3.aar/80211aeb20fcd585f6824717b26c5444/jars/libs/mail.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/LogReport-1.0.3.aar/80211aeb20fcd585f6824717b26c5444/jars/libs/additionnal.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

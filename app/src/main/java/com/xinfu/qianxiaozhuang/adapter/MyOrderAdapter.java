@@ -79,10 +79,13 @@ public class MyOrderAdapter extends BaseAdapter {
         viewHolder.layout_top.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(statusCode == 4||statusCode == 5){
+                    return;
+                }
                 if (statusCode == 3) {//进行中(进入推送结果页面)
                     context.startActivity(new Intent(context, ApplyLoanToGetMoneyActivity.class));
-                } else {
+                }
+                else {
                     context.startActivity(new Intent(context, QueryBackMoneyActivity.class).putExtra("result", statusCode));
                 }
             }

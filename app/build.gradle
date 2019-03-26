@@ -94,7 +94,7 @@ android {
         DEV {
 
 //            buildConfigField("String", "HOST_URL", "\"http://47.110.198.243/\"")
-            buildConfigField("String", "HOST_URL", "\"http://192.168.42.73:8081/\"")
+            buildConfigField("String", "HOST_URL", "\"http://192.168.0.153:8081/\"")
 
         }
         /*生产*/
@@ -204,7 +204,17 @@ dependencies {
     //滚轮控件
     implementation 'com.contrarywind:Android-PickerView:4.1.7'
     //图片请求框架
-    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+    implementation ('com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'){
+        exclude group: 'com.github.bumptech.glide'
+    }
+
+    //错误日志记录
+    implementation ('com.github.wenmingvs:LogReport:1.0.3'){
+        exclude group: 'com.android.support'
+    }
+
+
+
 
 }
 apply plugin: 'io.objectbox'
