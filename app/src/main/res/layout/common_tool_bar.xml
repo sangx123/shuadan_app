@@ -133,7 +133,7 @@
             android:id="@+id/mLine"
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="#d2d3d7"
+            android:background="#e0e0e0"
             android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

@@ -161,13 +161,13 @@
 -keep class org.junit.** { *;}
 
 #热更新
--keepclassmembers class com.xinfu.qianxiaozhuang.App {
-    public <init>();
-}
--dontwarn com.alibaba.sdk.android.utils.**
--keep class com.taobao.sophix.**{*;}
--keep class com.ta.utdid2.device.**{*;}
--dontoptimize
+#-keepclassmembers class com.xinfu.qianxiaozhuang.App {
+#    public <init>();
+#}
+#-dontwarn com.alibaba.sdk.android.utils.**
+#-keep class com.taobao.sophix.**{*;}
+#-keep class com.ta.utdid2.device.**{*;}
+#-dontoptimize
 
 #Glide代码混淆
 -keep public class * implements com.bumptech.glide.module.GlideModule

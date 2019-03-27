@@ -18,7 +18,7 @@ import java.io.File
                 "downloadApk" + File.separator)
         const val SUCCESS:String ="000"
         //腾讯bugly
-        const val BuglyAppID="6811826898"
+        const val BuglyAppID="6f1df86aca"
 
 
     }

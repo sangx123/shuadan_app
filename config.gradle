@@ -64,7 +64,7 @@ ext {
 
     packer = 'com.mcxiaoke.packer-ng:helper:2.0.1'
 
-    hotfix = 'com.aliyun.ams:alicloud-android-hotfix:3.2.8'
+    //hotfix = 'com.aliyun.ams:alicloud-android-hotfix:3.2.8'
 
     hawk = 'com.orhanobut:hawk:2.0.1'
 

@@ -122,11 +122,11 @@ kapt {
     }
 }
 
-repositories {
-    maven {
-        url "http://maven.aliyun.com/nexus/content/repositories/releases"
-    }
-}
+//repositories {
+//    maven {
+//        url "http://maven.aliyun.com/nexus/content/repositories/releases"
+//    }
+//}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -185,7 +185,7 @@ dependencies {
     //packer
     implementation rootProject.ext.packer
     //阿里热更新
-    implementation rootProject.ext.hotfix
+    //implementation rootProject.ext.hotfix
     //shareperference
     implementation rootProject.ext.hawk
     //新增广告轮播组件
