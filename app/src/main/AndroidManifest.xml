@@ -35,8 +35,9 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-
-        <activity android:name=".activity.my.MyBankListActivity"></activity>
+        <activity android:name=".activity.publish.PublishTaskContextEditActivity"></activity>
+        <activity android:name=".activity.publish.PublishTaskActivity" />
+        <activity android:name=".activity.my.MyBankListActivity" />
         <activity android:name=".activity.my.MyOrderActivity" />
         <activity android:name=".activity.my.FeedbackActivity" />
         <activity android:name=".api.TestApiActivity" />

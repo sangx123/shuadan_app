@@ -42,12 +42,12 @@ class ApplyLoanToBackMoneyActivity : BaseActivity(), RefundPlatformListAdapter.I
     }
 
     private fun initUI() {
-        titlebar_withdraw.setTitle(getString(R.string.quick_refund))
-        titlebar_withdraw.setTitleStyle(Typeface.DEFAULT_BOLD)
-        titlebar_withdraw.setTxtBackVisibility(View.VISIBLE)
-        titlebar_withdraw.setTitleCustomTextColor(resources.getColor(R.color.black))
-        titlebar_withdraw.setDrawableForTxtBack(R.drawable.icon_back)
-        titlebar_withdraw.setBackWidgetOnClick({ finish() }, null)
+        //titlebar_withdrawsetTitle(getString(R.string.quick_refund))
+        //titlebar_withdrawsetTitleStyle(Typeface.DEFAULT_BOLD)
+        //titlebar_withdrawsetTxtBackVisibility(View.VISIBLE)
+        //titlebar_withdrawsetTitleCustomTextColor(resources.getColor(R.color.black))
+        //titlebar_withdrawsetDrawableForTxtBack(R.drawable.icon_back)
+        //titlebar_withdrawsetBackWidgetOnClick({ finish() }, null)
 
         recyclerView.addItemDecoration(DividerItemDecoration(this@ApplyLoanToBackMoneyActivity, DividerItemDecoration.VERTICAL_LIST))
         recyclerView.setHasFixedSize(true)

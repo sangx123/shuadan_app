@@ -41,12 +41,12 @@ class AuthUserBankActivity : BaseActivity() {
 
     }
     private fun initUI() {
-        titlebar_withdraw.setTitle("添加银行卡")
-        titlebar_withdraw.setTitleStyle(Typeface.DEFAULT_BOLD)
-        titlebar_withdraw.setTxtBackVisibility(View.VISIBLE)
-        titlebar_withdraw.setTitleCustomTextColor(resources.getColor(R.color.black))
-        titlebar_withdraw.setDrawableForTxtBack(R.drawable.icon_back)
-        titlebar_withdraw.setBackWidgetOnClick({finish()}, null)
+        //titlebar_withdrawsetTitle("添加银行卡")
+        //titlebar_withdrawsetTitleStyle(Typeface.DEFAULT_BOLD)
+        //titlebar_withdrawsetTxtBackVisibility(View.VISIBLE)
+        //titlebar_withdrawsetTitleCustomTextColor(resources.getColor(R.color.black))
+        //titlebar_withdrawsetDrawableForTxtBack(R.drawable.icon_back)
+        //titlebar_withdrawsetBackWidgetOnClick({finish()}, null)
         toWeb.setOnClickListener {
             startActivity<NoticeWebActivity>(NoticeWebActivity.param_title to "代扣服务协议",NoticeWebActivity.param_local_html to "file:///android_asset/deduct.html")
         }

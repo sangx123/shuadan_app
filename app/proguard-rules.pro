@@ -194,3 +194,9 @@
 -keep class com.yalantis.ucrop** { *; }
 -keep interface com.yalantis.ucrop** { *; }
 
+ #Mob-SMSSDK
+  -keep class com.mob.**{*;}
+  -keep class cn.smssdk.**{*;}
+  -dontwarn com.mob.**
+
+-dontwarn  com.luck.picture.lib.**

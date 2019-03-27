@@ -204,16 +204,14 @@ dependencies {
     //滚轮控件
     implementation 'com.contrarywind:Android-PickerView:4.1.7'
     //图片请求框架
-    implementation ('com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'){
+    implementation('com.github.LuckSiege.PictureSelector:picture_library:v2.2.3') {
         exclude group: 'com.github.bumptech.glide'
     }
 
-    //错误日志记录
-    implementation ('com.github.wenmingvs:LogReport:1.0.3'){
-        exclude group: 'com.android.support'
-    }
-
-
+//    //错误日志记录
+//    implementation('com.github.wenmingvs:LogReport:1.0.3') {
+//        exclude group: 'com.android.support'
+//    }
 
 
 }
@@ -222,4 +220,12 @@ apply plugin: 'io.objectbox'
 dependencies {
 //主要是针对kotlin
     implementation rootProject.ext.objectbox_kotlin
+}
+
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}
+
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
 }

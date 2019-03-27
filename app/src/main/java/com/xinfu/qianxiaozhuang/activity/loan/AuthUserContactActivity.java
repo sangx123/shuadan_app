@@ -78,12 +78,12 @@ public class AuthUserContactActivity extends BaseActivity implements View.OnClic
 
     private void initUI() {
 
-        commonTitleBar = findViewById(R.id.titlebar_withdraw);
-        commonTitleBar.setTitle(getResources().getString(R.string.emergency_contact));
-        commonTitleBar.setTitleStyle(Typeface.DEFAULT_BOLD);
-        commonTitleBar.setTxtBackVisibility(View.VISIBLE);
-        commonTitleBar.setTitleCustomTextColor(getResources().getColor(R.color.black));
-        commonTitleBar.setDrawableForTxtBack(R.drawable.icon_back);
+//        commonTitleBar = findViewById(R.id.titlebar_withdraw);
+//        commonTitleBar.setTitle(getResources().getString(R.string.emergency_contact));
+//        commonTitleBar.setTitleStyle(Typeface.DEFAULT_BOLD);
+//        commonTitleBar.setTxtBackVisibility(View.VISIBLE);
+//        commonTitleBar.setTitleCustomTextColor(getResources().getColor(R.color.black));
+//        commonTitleBar.setDrawableForTxtBack(R.drawable.icon_back);
         commonTitleBar.setBackWidgetOnClick(AuthUserContactActivity.this, null);
         name1=(EditText) findViewById(R.id.name1);
         name2=(EditText) findViewById(R.id.name2);

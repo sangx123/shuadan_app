@@ -29,30 +29,6 @@ class KeyValueLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) 
 
     var mCacheedIvs: MutableList<ImageView> = ArrayList(4) // view 缓存
     var max_show_name = 3
-//    var mExecutors: ArrayList<UserModel> = ArrayList()  //如果是执行者
-//    set(selectedModel: ArrayList<UserModel>) {
-//        max_show_name = ll_executor_container.width / App.getInstance().dip(35f)
-//        tv_content.visibility = View.GONE
-//        ll_executor_container.visibility = View.VISIBLE
-//        tv_executor_count.visibility = View.VISIBLE
-//
-//
-//        if (selectedModel != null && selectedModel.size > 0) {
-//            mExecutors.clear()
-//            mExecutors.addAll(selectedModel)
-//            tv_executor_count.setText("(" + selectedModel.size + "人)")
-//            if (mExecutors.size > max_show_name) {
-//                addUserToGroup(ll_executor_container, mExecutors.subList(0, max_show_name))
-//            } else {
-//                addUserToGroup(ll_executor_container, mExecutors)
-//            }
-//        }else{
-//            mExecutors.clear()
-//            ll_executor_container.visibility = View.GONE
-//            tv_executor_count.visibility = View.GONE
-//        }
-//    }
-
     init {
 
         LayoutInflater.from(context).inflate(R.layout.layout_key_value_item, this, true)
@@ -76,6 +52,11 @@ class KeyValueLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) 
             if (obtainStyledAttributes.hasValue(R.styleable.KeyValueLayout_kvl_edit)) {
                 val has = obtainStyledAttributes.getBoolean(R.styleable.KeyValueLayout_kvl_edit, false)
                 setShowEdit(has)
+            }
+
+            if (obtainStyledAttributes.hasValue(R.styleable.KeyValueLayout_kvl_switch)) {
+                val has = obtainStyledAttributes.getBoolean(R.styleable.KeyValueLayout_kvl_switch, false)
+                setShowSwitch(has)
             }
             if (obtainStyledAttributes.hasValue(R.styleable.KeyValueLayout_kvl_edit_hint)) {
                 val str = obtainStyledAttributes.getString(R.styleable.KeyValueLayout_kvl_edit_hint)
@@ -125,6 +106,12 @@ class KeyValueLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) 
             }
             obtainStyledAttributes.recycle()
         }
+    }
+
+    private fun setShowSwitch(has: Boolean) {
+        edit_content.visibility=View.GONE
+        tv_content.visibility=View.GONE
+        mSwitchButton.visibility=View.VISIBLE
     }
 
     private fun setShowEdit(has: Boolean) {

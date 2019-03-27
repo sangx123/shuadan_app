@@ -34,7 +34,32 @@
         <item name="android:windowNoTitle">true</item>
        <!-- <item name="android:windowBackground">@mipmap/drawable_start_page</item>-->
     </style>
-    <declare-styleable name="ToolBar">
+    <!--<declare-styleable name="MTitleBar">-->
+        <!--<attr name="left_icon" format="reference" />-->
+        <!--<attr name="title" format="string" />-->
+        <!--<attr name="title_color" format="color" />-->
+        <!--<attr name="right_icon" format="reference" />-->
+        <!--<attr name="right_icon_two" format="reference" />-->
+        <!--<attr name="background_color" format="reference" />-->
+        <!--<attr name="right_text_color" format="color" />-->
+        <!--<attr name="right_text" format="string" />-->
+        <!--<attr name="left_text" format="string" />-->
+        <!--<attr name="left_text_color" format="color" />-->
+    <!--</declare-styleable>-->
+    <!--<declare-styleable name="CommonTitleBar">-->
+        <!--<attr name="left_icon" format="reference" />-->
+        <!--<attr name="title" format="string" />-->
+        <!--<attr name="title_color" format="color" />-->
+        <!--<attr name="right_icon" format="reference" />-->
+        <!--<attr name="right_icon_two" format="reference" />-->
+        <!--<attr name="background_color" format="reference" />-->
+        <!--<attr name="right_text_color" format="color" />-->
+        <!--<attr name="right_text" format="string" />-->
+        <!--<attr name="left_text" format="string" />-->
+        <!--<attr name="left_text_color" format="color" />-->
+    <!--</declare-styleable>-->
+
+    <declare-styleable name="MTitleBar">
         <attr name="left_icon" format="reference" />
         <attr name="title" format="string" />
         <attr name="title_color" format="color" />
@@ -62,6 +87,32 @@
         <attr name="kvl_left_icon_width" format="dimension" />
         <attr name="kvl_left_icon_height" format="dimension" />
         <attr name="kvl_left_icon" format="reference" />
+        <attr name="kvl_switch" format="boolean" />
     </declare-styleable>
+
+
+
+    <style name="SwitchButtonStyle">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+
+
+
+        <item name="kswBackDrawable">@drawable/ios_back_drawable</item>
+        <item name="kswThumbRangeRatio">1.4</item>
+        <item name="kswThumbDrawable">@drawable/ios_thumb_selector</item>
+        <item name="kswAnimationDuration">300</item>
+
+        <item name="kswThumbMarginBottom">-8dp</item>
+        <item name="kswThumbMarginLeft">-5dp</item>
+        <item name="kswThumbMarginRight">-5dp</item>
+        <item name="kswThumbMarginTop">-2.5dp</item>
+
+
+
+
+    </style>
 
 </resources>

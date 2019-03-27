@@ -88,12 +88,12 @@ class RegisterActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
 
     private fun initView() {
 
-        titlebar_withdraw.setTitle(resources.getString(R.string.register))
-        titlebar_withdraw.setTitleStyle(Typeface.DEFAULT_BOLD)
-        titlebar_withdraw.setTxtBackVisibility(View.VISIBLE)
-        titlebar_withdraw.setTitleCustomTextColor(resources.getColor(R.color.black))
-        titlebar_withdraw.setDrawableForTxtBack(R.drawable.icon_back)
-        titlebar_withdraw.setBackWidgetOnClick(this, null)
+        //titlebar_withdrawsetTitle(resources.getString(R.string.register))
+        //titlebar_withdrawsetTitleStyle(Typeface.DEFAULT_BOLD)
+        //titlebar_withdrawsetTxtBackVisibility(View.VISIBLE)
+        //titlebar_withdrawsetTitleCustomTextColor(resources.getColor(R.color.black))
+        //titlebar_withdrawsetDrawableForTxtBack(R.drawable.icon_back)
+        //titlebar_withdrawsetBackWidgetOnClick(this, null)
 
         //获取短信验证码
         txt_get_code.setOnClickListener {

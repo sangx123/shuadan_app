@@ -5,20 +5,20 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/mToolBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/white"
+        android:layout_height="@dimen/dp_50"
+        android:background="#ffffff"
         >
     <RelativeLayout
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="8dp"
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_35"
+            android:layout_marginLeft="@dimen/dp_8"
             android:layout_centerVertical="true"
             >
 
     <ImageView
             android:id="@+id/mIvTitleLeft"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_35"
             android:scaleType="center"
             />
         <ImageView
@@ -41,13 +41,14 @@
     <TextView
             android:id="@+id/mTvTitleContent"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp_50"
+            android:gravity="center"
             android:maxWidth="200dp"
             android:layout_centerInParent="true"
             android:maxLines="1"
             android:text="首页"
             android:ellipsize="end"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             android:textColor="#000"
             />
 
@@ -59,8 +60,8 @@
             android:layout_marginRight="8dp"
             android:layout_centerVertical="true"
             android:visibility="gone"
-            android:layout_width="35dp"
-            android:layout_height="35dp"/>
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_35"/>
 
     <ImageView
             android:id="@+id/mIvTitleRightSecond"
@@ -69,8 +70,8 @@
             android:layout_marginRight="8dp"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/mIvTitleRight"
-            android:layout_width="35dp"
-            android:layout_height="35dp"/>
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_35"/>
 
 
 

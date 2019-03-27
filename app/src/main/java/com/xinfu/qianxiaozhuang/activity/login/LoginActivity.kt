@@ -100,12 +100,12 @@ class LoginActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
     private fun initView() {
 
 
-        titlebar_withdraw.setTitle(resources.getString(R.string.login))
-        titlebar_withdraw.setTitleStyle(Typeface.DEFAULT_BOLD)
-        titlebar_withdraw.setTxtBackVisibility(View.VISIBLE)
-        titlebar_withdraw.setTitleCustomTextColor(resources.getColor(R.color.black))
-        titlebar_withdraw.setDrawableForTxtBack(R.drawable.icon_back)
-        titlebar_withdraw.setBackWidgetOnClick(this@LoginActivity, null)
+        //titlebar_withdrawsetTitle(resources.getString(R.string.login))
+        //titlebar_withdrawsetTitleStyle(Typeface.DEFAULT_BOLD)
+        //titlebar_withdrawsetTxtBackVisibility(View.VISIBLE)
+        //titlebar_withdrawsetTitleCustomTextColor(resources.getColor(R.color.black))
+        //titlebar_withdrawsetDrawableForTxtBack(R.drawable.icon_back)
+        //titlebar_withdrawsetBackWidgetOnClick(this@LoginActivity, null)
 
         var strcontent: String = getString(R.string.register_immediately_one)
 //        txt_register.setText(SpannableUtils.setTextForeground(strcontent, 0,

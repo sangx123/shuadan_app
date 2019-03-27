@@ -53,12 +53,12 @@ class NoticeWebActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
 
     private fun initUI() {
 
-        titlebar_withdraw.setTitle(title)
-        titlebar_withdraw.setTitleStyle(Typeface.DEFAULT_BOLD)
-        titlebar_withdraw.setTxtBackVisibility(View.VISIBLE)
-        titlebar_withdraw.setTitleCustomTextColor(resources.getColor(R.color.black))
-        titlebar_withdraw.setDrawableForTxtBack(R.drawable.icon_back)
-        titlebar_withdraw.setBackWidgetOnClick(this@NoticeWebActivity, null)
+        //titlebar_withdrawsetTitle(title)
+        //titlebar_withdrawsetTitleStyle(Typeface.DEFAULT_BOLD)
+        //titlebar_withdrawsetTxtBackVisibility(View.VISIBLE)
+        //titlebar_withdrawsetTitleCustomTextColor(resources.getColor(R.color.black))
+        //titlebar_withdrawsetDrawableForTxtBack(R.drawable.icon_back)
+        //titlebar_withdrawsetBackWidgetOnClick(this@NoticeWebActivity, null)
         if(!localHtmlPath.isNullOrBlank()){
             webView.loadUrl(localHtmlPath)
             return

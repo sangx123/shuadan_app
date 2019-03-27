@@ -23,6 +23,7 @@ import com.xinfu.qianxiaozhuang.activity.loan.ApplyLoanActivity
 import com.xinfu.qianxiaozhuang.activity.loan.AuthCenterActivity
 import com.xinfu.qianxiaozhuang.activity.loan.AuthUserBankActivity
 import com.xinfu.qianxiaozhuang.activity.login.LoginActivity
+import com.xinfu.qianxiaozhuang.activity.publish.PublishTaskActivity
 import com.xinfu.qianxiaozhuang.api.Api
 import com.xinfu.qianxiaozhuang.api.BaseResult
 import com.xinfu.qianxiaozhuang.api.model.UserCenterModel
@@ -84,8 +85,8 @@ class MyFragment : BaseFragment(){
         //var path = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552814176721&di=a3cc48bfab61dfd9a831ec7d6c67cc0d&imgtype=0&src=http%3A%2F%2Fwww.gupen.com%2Fuploads%2Fallimg%2F111101%2F11-111101093422328.jpg"
         Glide.with(this).load(R.mipmap.ic_launcher).apply(RequestOptions.bitmapTransform(CircleCrop())).into(mHead)
 
-        mXinyongfen.setOnClickListener {
-            startActivity<ApplyLoanActivity>()
+        mPublishTask.setOnClickListener {
+            startActivity<PublishTaskActivity>()
         }
         mJiekuanjilu.setOnClickListener {
             startActivity<MyJiekuanjiluActivity>()

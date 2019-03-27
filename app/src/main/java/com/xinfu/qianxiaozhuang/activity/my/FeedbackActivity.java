@@ -44,13 +44,13 @@ public class FeedbackActivity extends BaseActivity implements CommonTitleBar.ICl
 
     private void initUI() {
 
-        commonTitleBar = findViewById(R.id.titlebar_withdraw);
-        commonTitleBar.setTitle("意见反馈");
-        commonTitleBar.setTitleStyle(Typeface.DEFAULT_BOLD);
-        commonTitleBar.setTxtBackVisibility(View.VISIBLE);
-        commonTitleBar.setTitleCustomTextColor(getResources().getColor(R.color.black));
-        commonTitleBar.setDrawableForTxtBack(R.drawable.icon_back);
-        commonTitleBar.setBackWidgetOnClick(FeedbackActivity.this, null);
+//        commonTitleBar = findViewById(R.id.titlebar_withdraw);
+//        commonTitleBar.setTitle("意见反馈");
+//        commonTitleBar.setTitleStyle(Typeface.DEFAULT_BOLD);
+//        commonTitleBar.setTxtBackVisibility(View.VISIBLE);
+//        commonTitleBar.setTitleCustomTextColor(getResources().getColor(R.color.black));
+//        commonTitleBar.setDrawableForTxtBack(R.drawable.icon_back);
+//        commonTitleBar.setBackWidgetOnClick(FeedbackActivity.this, null);
 
         et_content = findViewById(R.id.et_content);
         text_count = findViewById(R.id.text_count);
