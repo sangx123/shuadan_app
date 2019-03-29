@@ -129,6 +129,7 @@ kapt {
 //}
 
 dependencies {
+    //implementation "org.jetbrains.anko:anko-sdk25:$anko_version"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation rootProject.ext.kotlin_reflect
     //引入anko
@@ -208,10 +209,11 @@ dependencies {
         exclude group: 'com.github.bumptech.glide'
     }
 
-//    //错误日志记录
-//    implementation('com.github.wenmingvs:LogReport:1.0.3') {
-//        exclude group: 'com.android.support'
-//    }
+    //富文本
+    implementation ('com.github.sendtion:XRichText:1.8') {
+        exclude group: 'com.android.support'
+        exclude group: 'com.github.bumptech.glide'
+    }
 
 
 }

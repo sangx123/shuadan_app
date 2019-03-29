@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.qianwen:update-app:3.5.2@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/update-app-3.5.2.aar/42253162b5c2a19d45ac3f4192f176a0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/update-app-3.5.2.aar/42253162b5c2a19d45ac3f4192f176a0/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/update-app-3.5.2.aar/ca52dc8f29202f3b40cced14cbde0c19/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/update-app-3.5.2.aar/ca52dc8f29202f3b40cced14cbde0c19/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

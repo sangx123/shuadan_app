@@ -92,37 +92,5 @@ class App :Application(),AnkoLogger {
         if (BuildConfig.DEBUG) {
              AndroidObjectBrowser(mBoxStore).start(this);
         }
-        //错误日志上传初始化
-        //initCrashReport()
-        //initEmailReporter()
-
-
-
     }
-
-//
-//    private fun initCrashReport() {
-//        //FileUtil.deleteDir(File(LogReport.getInstance().root))//删除LogReport的内的文件
-//        LogReport.getInstance()
-//                .setCacheSize((30 * 1024 * 1024).toLong())//支持设置缓存大小，超出后清空
-//                .setLogDir(applicationContext, "sdcard/" + this.getString(this.applicationInfo.labelRes) + "/mylog/")//定义路径为：sdcard/[app name]/
-//                .setWifiOnly(false)//设置只在Wifi状态下上传，设置为false为Wifi和移动网络都上传
-//                .setLogSaver(CrashWriter(applicationContext))//支持自定义保存崩溃信息的样式
-//                //.setEncryption(new AESEncode()) //支持日志到AES加密或者DES加密，默认不开启
-//                .init(applicationContext)
-//
-//    }
-//
-//    /**
-//     * 使用EMAIL发送日志
-//     */
-//    private fun initEmailReporter() {
-//        val email = EmailReporter(this)
-//        email.setReceiver("sangx@xueshandai.com")//收件人
-//        email.setSender("sangx@xueshandai.com")//发送人邮箱
-//        email.setSendPassword("Xsd@123")//邮箱密码
-//        email.setSMTPHost("smtp.exmail.qq.com")//SMTP地址
-//        email.setPort("465")//SMTP 端口
-//        LogReport.getInstance().setUploadType(email)
-//    }
 }

@@ -6,11 +6,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.publish.PublishTaskContextEditActivity">
-<com.xinfu.qianxiaozhuang.widgets.MTitleBar
-    android:layout_width="wrap_content"
-    app:title="任务内容"
-    app:left_icon="@drawable/icon_back_black"
-    android:layout_height="wrap_content">
 
-</com.xinfu.qianxiaozhuang.widgets.MTitleBar>
+    <com.xinfu.qianxiaozhuang.widgets.MTitleBar
+        android:id="@+id/mTitleBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:left_icon="@drawable/icon_back_black"
+        app:right_text="添加图片"
+        app:right_text_color="@color/color_30A3FF"
+        app:title="任务内容">
+    </com.xinfu.qianxiaozhuang.widgets.MTitleBar>
+    <com.sendtion.xrichtext.RichTextEditor
+        android:id="@+id/et_new_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:rt_editor_text_line_space="6dp"
+        app:rt_editor_image_height="500"
+        app:rt_editor_image_bottom="10"
+        app:rt_editor_text_init_hint="在这里输入内容"
+        app:rt_editor_text_size="16sp"
+        app:rt_editor_text_color="#212121"/>
 </LinearLayout>
