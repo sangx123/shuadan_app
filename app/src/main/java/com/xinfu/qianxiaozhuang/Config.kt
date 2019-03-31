@@ -19,6 +19,7 @@ import java.io.File
         const val SUCCESS:String ="000"
         //腾讯bugly
         const val BuglyAppID="6f1df86aca"
+        const val MAX_FAILURE_COUNT = 1
 
 
     }

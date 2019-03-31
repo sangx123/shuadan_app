@@ -201,4 +201,10 @@
 
 -dontwarn  com.luck.picture.lib.**
 
+#七牛代码混淆
+-keep class com.qiniu.**{*;} 
+-keep class com.qiniu.**{public <init>();} 
+
+
+
 

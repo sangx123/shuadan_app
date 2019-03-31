@@ -94,7 +94,7 @@ android {
         DEV {
 
 //            buildConfigField("String", "HOST_URL", "\"http://47.110.198.243/\"")
-            buildConfigField("String", "HOST_URL", "\"http://192.168.0.153:8081/\"")
+            buildConfigField("String", "HOST_URL", "\"http://192.168.199.150:8081/\"")
 
         }
         /*生产*/
@@ -214,6 +214,9 @@ dependencies {
         exclude group: 'com.android.support'
         exclude group: 'com.github.bumptech.glide'
     }
+
+    //七牛图片上传
+    implementation 'com.qiniu:qiniu-android-sdk:7.3.15'
 
 
 }

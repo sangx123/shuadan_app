@@ -1,6 +1,7 @@
 package com.xinfu.qianxiaozhuang
 
 import android.app.Application
+import android.os.Environment
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.mob.MobSDK
 import com.orhanobut.hawk.Hawk
@@ -20,6 +21,7 @@ class App :Application(),AnkoLogger {
 
     private lateinit var rootFileDir: File
     private lateinit var cacheImage: File
+    lateinit var fileRecorder: File//七牛断点续传文件夹
     companion object {
 
         lateinit var mInstance: App
@@ -42,7 +44,21 @@ class App :Application(),AnkoLogger {
         //初始化shareperferrence
         Hawk.init(this).setLogInterceptor { message -> error{message} }.build()
         //短信初始化
-        MobSDK.init(this);
+        MobSDK.init(this)
+        rootFileDir = File(Environment.getExternalStorageDirectory(), "sangxiang")
+        rootFileDir?.let {
+            if (!it.exists()) {
+                it.mkdirs()
+            }
+        }
+
+        fileRecorder = File(rootFileDir, "recordFile")
+        fileRecorder?.let {
+            if (!it.exists()) {
+                it.mkdirs()
+            }
+        }
+
 //        JPushInterface.setDebugMode(true)
 //        JPushInterface.init(this)
 //        rootFileDir=File(Config.ROOT_PATH)

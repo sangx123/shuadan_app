@@ -12,6 +12,15 @@ import retrofit2.http.*
  */
 @JvmSuppressWildcards
 interface ApiService {
+
+    /**
+     * 通用
+     */
+    @InterfaceUseCase("七牛图片上传的token获取")
+    @POST("api/qiniu/appCommonToken")
+    //@POST("/qiniu/appCommonToken")
+    fun getQiNiuToken(): Observable<BaseResult<QiniuModel>>
+
 //    /**
 //     * 登录相关
 //     */
