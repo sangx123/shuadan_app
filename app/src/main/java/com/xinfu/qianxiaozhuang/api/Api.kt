@@ -35,6 +35,7 @@ class Api private constructor() {
     private val DEFAULT_TIMEOUT = 60
     lateinit var retrofit: Retrofit
     private lateinit var apiService: ApiService
+    private lateinit var apiImageService: ApiService
     private var httpClientBuilder: OkHttpClient.Builder
     private lateinit var mReqLogFp: File
     var mCurDateTime: String? = null //yyyy-MM-dd HH:mm:ss
@@ -64,7 +65,14 @@ class Api private constructor() {
                 .client(httpClientBuilder.build())
                 .build()
         apiService = retrofit.create(ApiService::class.java)
-
+        apiImageService= Retrofit.Builder()
+//                .addConverterFactory(ShowContentConverter())
+//                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .baseUrl("http://188.131.235.188:8081/")
+                .client(httpClientBuilder.build())
+                .build().create(ApiService::class.java)
     }
 
     //在访问EmucooRequest时创建单例
@@ -116,6 +124,10 @@ class Api private constructor() {
         @JvmStatic
         fun getApiService(): ApiService {
             return getInstance().apiService
+        }
+        @JvmStatic
+        fun getImageApiService(): ApiService {
+            return getInstance().apiImageService
         }
         fun String.toIPPair():Pair<String/*ip*/,String/*port*/>{
             var tempUrl :String

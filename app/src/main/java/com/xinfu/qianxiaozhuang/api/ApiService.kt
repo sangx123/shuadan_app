@@ -21,6 +21,15 @@ interface ApiService {
     //@POST("/qiniu/appCommonToken")
     fun getQiNiuToken(): Observable<BaseResult<QiniuModel>>
 
+    /**
+     * 通用上传图片
+     */
+    @InterfaceUseCase("上传图片")
+    @Multipart
+    @POST("api/upload/uploadImage")
+    fun uploadImage(@Part image: MultipartBody.Part): Observable<BaseResult<String>>
+
+
 //    /**
 //     * 登录相关
 //     */
