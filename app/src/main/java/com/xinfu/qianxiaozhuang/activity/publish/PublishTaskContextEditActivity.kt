@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.SimpleTarget
 import com.jakewharton.rxbinding2.view.RxView
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
@@ -39,6 +41,10 @@ import java.io.File
 class PublishTaskContextEditActivity : BaseActivity() {
     private var myContent=""
     lateinit var selectList: MutableList<LocalMedia>
+    companion object {
+        var param_data_content="param_data_content"
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_publish_task_context_edit)
@@ -156,6 +162,7 @@ class PublishTaskContextEditActivity : BaseActivity() {
      * 调用图库选择
      */
     fun  callGallery(){
+        closeSoftKeyInput()//关闭软键盘
         //调用系统图库
             PictureSelector.create(this@PublishTaskContextEditActivity)
                     .openGallery(PictureMimeType.ofImage())
@@ -200,8 +207,9 @@ class PublishTaskContextEditActivity : BaseActivity() {
 
     private fun uploadImage(imagePath: String) {
         LogUtil.e("sangxiang", "uploadImage");
+        showApiProgress()
         getImageContent(imagePath)?.let {
-                Api.getImageApiService().uploadImage(it)
+                        Api.getImageApiService().uploadImage(it)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(object : Observer<BaseResult<String>> {
@@ -214,9 +222,11 @@ class PublishTaskContextEditActivity : BaseActivity() {
                         }
 
                         override fun onNext(t: BaseResult<String>) {
-                            t.result?.let {
-                                toast("图片上传成功！")
-                            }
+//                            t.result?.let {
+//                                toast("图片上传成功！")
+//                            }
+
+                            insertImagesSync("http://"+t.data!!)
                         }
 
                         override fun onError(e: Throwable) {
@@ -358,6 +368,4 @@ class PublishTaskContextEditActivity : BaseActivity() {
                     }
                 })
     }
-
-
 }

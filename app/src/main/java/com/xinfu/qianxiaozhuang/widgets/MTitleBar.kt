@@ -26,8 +26,10 @@ class MTitleBar constructor(context: Context, attrs: AttributeSet? = null, defSt
     private var mRightIconRes: Int = 0
     private var mRightIconTwoRes: Int = 0
     private var mRightText: String = ""
+    private var mRightText1: String = ""
     private var mBgRes: Int = 0
     private var mRightTextColor: Int = 0
+    private var mRightText1Color: Int = 0
     private var mTitleColor: Int = 0
 
     private var mLeftText: String = ""
@@ -96,6 +98,17 @@ class MTitleBar constructor(context: Context, attrs: AttributeSet? = null, defSt
                     mLeftTextColor = a.getColor(attr, Color.WHITE)
                     setLeftTextColor(mLeftTextColor)
                 }
+                R.styleable.MTitleBar_right_text1 -> {
+                    mRightText1 = a.getString(attr)
+                    if (!TextUtils.isEmpty(mRightText1)) {
+                        setRightText1(mRightText1)
+                    }
+                }
+                R.styleable.MTitleBar_right_text_color1 -> {
+                    mRightText1Color = a.getColor(attr, resources.getColor(R.color.colorAccent))
+                    setRightTextColor1(mRightText1Color)
+                }
+
             }
 
         }
@@ -146,11 +159,19 @@ class MTitleBar constructor(context: Context, attrs: AttributeSet? = null, defSt
     private fun setRightTextColor(rightTextColor: Int) {
         mTvRight.setTextColor(rightTextColor)
     }
+    private fun setRightTextColor1(rightTextColor: Int) {
+        mTvRight1.setTextColor(rightTextColor)
+    }
 
     fun setRightText(rightText: String) {
         mIvTitleRight.setVisibility(View.GONE)
         mTvRight.setVisibility(View.VISIBLE)
         mTvRight.setText(rightText)
+    }
+    fun setRightText1(rightText: String) {
+        mIvTitleRight.setVisibility(View.GONE)
+        mTvRight1.setVisibility(View.VISIBLE)
+        mTvRight1.setText(rightText)
     }
 
     fun setRightIcon(mRightIconRes: Int) {

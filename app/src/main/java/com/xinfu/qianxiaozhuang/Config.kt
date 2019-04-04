@@ -21,6 +21,11 @@ import java.io.File
         const val BuglyAppID="6f1df86aca"
         const val MAX_FAILURE_COUNT = 1
 
+        const val requestCode100="100"
+        const val requestCode101="101"
+        const val requestCode102="102"
+
+
 
     }
 }

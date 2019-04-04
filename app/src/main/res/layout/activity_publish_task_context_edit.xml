@@ -12,7 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:left_icon="@drawable/icon_back_black"
-        app:right_text="添加图片"
+        app:right_text="插入图片"
+        app:right_text1="保存"
         app:right_text_color="@color/color_30A3FF"
         app:title="任务内容">
     </com.xinfu.qianxiaozhuang.widgets.MTitleBar>

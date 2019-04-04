@@ -1,6 +1,7 @@
 package com.xinfu.qianxiaozhuang.activity.publish
 
 import android.app.Activity
+import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
@@ -13,7 +14,8 @@ import org.jetbrains.anko.startActivity
  * 发布任务
  */
 class PublishTaskActivity : BaseActivity() {
-
+    var content=""
+    var requestCode=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_publish_task)
@@ -22,7 +24,9 @@ class PublishTaskActivity : BaseActivity() {
 
     private fun initUI() {
         mContent.setOnClickListener {
-            startActivity<PublishTaskContextEditActivity>()
+            var intent= Intent()
+            intent.putExtra(PublishTaskContextEditActivity.param_data_content,content)
+            startActivityForResult(intent,-1)
         }
     }
 }

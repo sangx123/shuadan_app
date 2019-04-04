@@ -67,9 +67,12 @@
         <attr name="right_icon_two" format="reference" />
         <attr name="background_color" format="reference" />
         <attr name="right_text_color" format="color" />
+        <attr name="right_text_color1" format="color" />
         <attr name="right_text" format="string" />
+        <attr name="right_text1" format="string" />
         <attr name="left_text" format="string" />
         <attr name="left_text_color" format="color" />
+
     </declare-styleable>
 
     <declare-styleable name="KeyValueLayout">
