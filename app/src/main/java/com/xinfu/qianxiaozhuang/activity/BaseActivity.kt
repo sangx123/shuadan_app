@@ -22,17 +22,17 @@ abstract class BaseActivity : AppCompatActivity(),AnkoLogger {
 //    var mOnResultListener: ((mNotificationRequestCode: Int, resultCode: Int, data: Intent?) -> Unit)? = null
 
 
-    private val mOnResultListeners= mutableListOf<(Int,Int,Intent?)->Unit>()
+    //private val mOnResultListeners= mutableListOf<(Int,Int,Intent?)->Unit>()
     public lateinit var mDisposables:CompositeDisposable
 
 
 
     public fun getDisposables() = mDisposables
 
-    fun onResult(listener: (requestCode:Int,resultCode:Int, Intent?) -> Unit): Unit {
-//        mOnResultListener = listener
-        mOnResultListeners.add(listener)
-    }
+//    fun onResult(listener: (requestCode:Int,resultCode:Int, Intent?) -> Unit): Unit {
+////        mOnResultListener = listener
+//        mOnResultListeners.add(listener)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,13 +73,13 @@ abstract class BaseActivity : AppCompatActivity(),AnkoLogger {
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-//        mOnResultListener?.invoke(mNotificationRequestCode, resultCode, data)
-        mOnResultListeners.forEach {
-            it.invoke(requestCode,resultCode,data)
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+////        mOnResultListener?.invoke(mNotificationRequestCode, resultCode, data)
+//        mOnResultListeners.forEach {
+//            it.invoke(requestCode,resultCode,data)
+//        }
+//    }
 
     fun showApiProgress(){
         if(ApiRequestDialog==null){

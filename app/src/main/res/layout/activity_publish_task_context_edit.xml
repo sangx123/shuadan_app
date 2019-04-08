@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".activity.publish.PublishTaskContextEditActivity">
 
     <com.xinfu.qianxiaozhuang.widgets.MTitleBar
@@ -12,19 +13,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:left_icon="@drawable/icon_back_black"
-        app:right_text="插入图片"
-        app:right_text1="保存"
+        app:right_text="确定"
         app:right_text_color="@color/color_30A3FF"
         app:title="任务内容">
     </com.xinfu.qianxiaozhuang.widgets.MTitleBar>
     <com.sendtion.xrichtext.RichTextEditor
         android:id="@+id/et_new_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         app:rt_editor_text_line_space="6dp"
         app:rt_editor_image_height="500"
         app:rt_editor_image_bottom="10"
-        app:rt_editor_text_init_hint="在这里输入内容"
+        app:rt_editor_text_init_hint="插入文字"
         app:rt_editor_text_size="16sp"
         app:rt_editor_text_color="#212121"/>
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:visibility="gone"
+            android:background="@drawable/ic_keyboard_grey600_48dp"
+            />
+        <ImageView
+            android:id="@+id/mAddImage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_image_plus_grey600_48dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_15"
+            />
+    </RelativeLayout>
 </LinearLayout>

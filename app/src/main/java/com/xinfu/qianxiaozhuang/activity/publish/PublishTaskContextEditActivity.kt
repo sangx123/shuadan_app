@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
@@ -18,6 +19,7 @@ import com.sendtion.xrichtext.RichTextEditor
 import com.tbruyelle.rxpermissions2.Permission
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.xinfu.qianxiaozhuang.R
+import com.xinfu.qianxiaozhuang.RequestCodeConfig
 import com.xinfu.qianxiaozhuang.activity.BaseActivity
 import com.xinfu.qianxiaozhuang.api.Api
 import com.xinfu.qianxiaozhuang.api.BaseResult
@@ -43,20 +45,24 @@ class PublishTaskContextEditActivity : BaseActivity() {
     lateinit var selectList: MutableList<LocalMedia>
     companion object {
         var param_data_content="param_data_content"
-
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_publish_task_context_edit)
+        if(!intent.getStringExtra(param_data_content).isNullOrBlank()){
+            myContent=intent.getStringExtra(param_data_content)
+        }
         initUI()
     }
 
     private fun initUI() {
-
         mTitleBar.setRightOnClickListener(View.OnClickListener {
-            callGallery()
+            var intent =Intent();
+            intent.putExtra("param_data_content",getEditData())
+            setResult(RequestCodeConfig.result200,intent)
+            finish()
         })
-        RxView.clicks(mTitleBar.mTvRight)
+        RxView.clicks(mAddImage)
                 // Ask for permissions when button is clicked
                 .compose(RxPermissions(this).ensureEach(Manifest.permission.WRITE_EXTERNAL_STORAGE))
                 .subscribe(object: Observer<Permission> {
@@ -88,26 +94,32 @@ class PublishTaskContextEditActivity : BaseActivity() {
                 })
 
 
-        // 图片删除事件
-        et_new_content.setOnRtImageDeleteListener { imagePath ->
-            if (!TextUtils.isEmpty(imagePath)) {
-                val isOK = SDCardUtil.deleteFile(imagePath)
-                if (isOK) {
-                    toast("删除成功：$imagePath")
-                }
-            }
-        }
-        // 图片点击事件
-        et_new_content.setOnRtImageClickListener(RichTextEditor.OnRtImageClickListener { imagePath ->
-            myContent = getEditData()
-            if (!TextUtils.isEmpty(myContent)) {
-                val imageList = StringUtils.getTextFromHtml(myContent, true)
+
+
+        et_new_content.post {
+            et_new_content.clearAllLayout()
+            showDataSync(myContent)
+            // 图片删除事件
+            et_new_content.setOnRtImageDeleteListener { imagePath ->
                 if (!TextUtils.isEmpty(imagePath)) {
-                    val currentPosition = imageList.indexOf(imagePath)
-                    toast("点击图片：$currentPosition：$imagePath")
+                    val isOK = SDCardUtil.deleteFile(imagePath)
+                    if (isOK) {
+                        toast("删除成功：$imagePath")
+                    }
                 }
             }
-        })
+            // 图片点击事件
+            et_new_content.setOnRtImageClickListener(RichTextEditor.OnRtImageClickListener { imagePath ->
+                myContent = getEditData()
+                if (!TextUtils.isEmpty(myContent)) {
+                    val imageList = StringUtils.getTextFromHtml(myContent, true)
+                    if (!TextUtils.isEmpty(imagePath)) {
+                        val currentPosition = imageList.indexOf(imagePath)
+                        toast("点击图片：$currentPosition：$imagePath")
+                    }
+                }
+            })
+        }
     }
 
     /**
@@ -118,9 +130,9 @@ class PublishTaskContextEditActivity : BaseActivity() {
         val content = StringBuilder()
         for (itemData in editList) {
             if (itemData.inputStr != null) {
-                content.append(itemData.inputStr)
+                content.append("<line>"+itemData.inputStr+"</line>")
             } else if (itemData.imagePath != null) {
-                content.append("<img src=\"").append(itemData.imagePath).append("\"/>")
+                content.append("<line>"+"<img src=\"").append(itemData.imagePath).append("\"/>"+"</line>")
             }
         }
         return content.toString()
@@ -365,6 +377,65 @@ class PublishTaskContextEditActivity : BaseActivity() {
 
                     override fun onNext(imagePath: String) {
                         et_new_content.insertImage(imagePath, et_new_content.measuredWidth)
+                    }
+                })
+    }
+
+
+    /**
+     * 显示数据
+     */
+    protected fun showEditData(emitter: ObservableEmitter<String>, html: String) {
+        try {
+            val textList = StringUtils.cutStringByLineTag(html)
+            for (i in textList.indices) {
+                val text = textList[i]
+                emitter.onNext(text)
+            }
+            emitter.onComplete()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emitter.onError(e)
+        }
+    }
+
+    /**
+     * 异步方式显示数据
+     * @param html
+     */
+    private fun showDataSync(html: String) {
+        Observable.create(ObservableOnSubscribe<String> { emitter -> showEditData(emitter, html) })
+                //.onBackpressureBuffer()
+                .subscribeOn(Schedulers.io())//生产事件在io
+                .observeOn(AndroidSchedulers.mainThread())//消费事件在UI线程
+                .subscribe(object : Observer<String> {
+                    override fun onComplete() {
+                        if (et_new_content != null) {
+                            //在图片全部插入完毕后，再插入一个EditText，防止最后一张图片后无法插入文字
+                            if(myContent.isNullOrBlank())
+                            et_new_content.addEditTextAtIndex(et_new_content.lastIndex, "")
+                        }
+                    }
+
+                    override fun onError(e: Throwable) {
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
+                      mDisposables.add(d)
+                    }
+
+                    override fun onNext(text: String) {
+                        if (et_new_content != null) {
+                            if (text.contains("<img") && text.contains("src=")) {
+                                //imagePath可能是本地路径，也可能是网络地址
+                                val imagePath = StringUtils.getImgSrc(text)
+                                //插入空的EditText，以便在图片前后插入文字
+                                //et_new_content.addEditTextAtIndex(et_new_content.lastIndex, "")
+                                et_new_content.addImageViewAtIndex(et_new_content.lastIndex, imagePath)
+                            } else {
+                                et_new_content.addEditTextAtIndex(et_new_content.lastIndex, text)
+                            }
+                        }
                     }
                 })
     }

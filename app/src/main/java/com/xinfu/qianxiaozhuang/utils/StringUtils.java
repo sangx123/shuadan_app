@@ -7,6 +7,7 @@ import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,6 +38,20 @@ public class StringUtils {
             splitTextList.add(targetStr.substring(lastIndex, targetStr.length()));
         }
         return splitTextList;
+    }
+
+    /**
+     * 获取多个目标字符串
+     */
+    public static List<String> cutStringByLineTag(String input) {
+        String regex=Pattern.quote("<line>")+"(.*?)"+Pattern.quote("</line>");
+        List<String> result = new LinkedList<String>();
+        Pattern pat = Pattern.compile(regex, Pattern.DOTALL);
+        Matcher mat = pat.matcher(input);
+        while (mat.find()) {
+            result.add(mat.group(1));
+        }
+        return result;
     }
 
     /**
