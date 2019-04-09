@@ -9,7 +9,7 @@
     tools:context=".activity.publish.PublishTaskActivity">
     <com.xinfu.qianxiaozhuang.widgets.MTitleBar
         android:layout_width="wrap_content"
-        app:title="新建任务"
+        app:title="发布任务"
         app:left_icon="@drawable/icon_back_black"
         android:layout_height="wrap_content">
     </com.xinfu.qianxiaozhuang.widgets.MTitleBar>
@@ -17,7 +17,7 @@
         android:layout_marginTop="10dp"
         android:id="@+id/mTitle"
         android:layout_width="wrap_content"
-        app:kvl_text_hint="标题："
+        app:kvl_text_hint="任务名字："
         app:kvl_edit="true"
         app:kvl_edit_hint="请输入任务标题"
         app:kvl_has_right_arrow="false"
@@ -26,42 +26,34 @@
     <com.xinfu.qianxiaozhuang.widgets.KeyValueLayout
         android:id="@+id/mContent"
         android:layout_width="wrap_content"
-        app:kvl_text_hint="请编辑任务内容"
+        app:kvl_text_hint="任务内容："
         android:layout_height="wrap_content">
     </com.xinfu.qianxiaozhuang.widgets.KeyValueLayout>
     <com.xinfu.qianxiaozhuang.widgets.KeyValueLayout
         android:id="@+id/mBenjin"
         android:layout_width="wrap_content"
-        app:kvl_text_hint="本金："
+        app:kvl_text_hint="任务本金(元)："
         app:kvl_edit="true"
-        app:kvl_edit_hint="请输入本金(元)"
+        app:kvl_edit_hint="请输入任务本金"
         app:kvl_has_right_arrow="false"
         android:layout_height="wrap_content">
     </com.xinfu.qianxiaozhuang.widgets.KeyValueLayout>
     <com.xinfu.qianxiaozhuang.widgets.KeyValueLayout
         android:id="@+id/mYongjin"
         android:layout_width="wrap_content"
-        app:kvl_text_hint="佣金："
+        app:kvl_text_hint="任务奖励(元)："
         app:kvl_edit="true"
-        app:kvl_edit_hint="请输入佣金(元)"
+        app:kvl_edit_hint="请输入任务奖励"
         app:kvl_has_right_arrow="false"
         android:layout_height="wrap_content">
     </com.xinfu.qianxiaozhuang.widgets.KeyValueLayout>
     <com.xinfu.qianxiaozhuang.widgets.KeyValueLayout
         android:id="@+id/mNum"
         android:layout_width="wrap_content"
-        app:kvl_text_hint="人数："
+        app:kvl_text_hint="任务人数："
         app:kvl_edit="true"
-        app:kvl_edit_hint="请输入需要的人数"
-        app:kvl_has_right_arrow="false"
-        android:layout_height="wrap_content">
-    </com.xinfu.qianxiaozhuang.widgets.KeyValueLayout>
-    <com.xinfu.qianxiaozhuang.widgets.KeyValueLayout
-        android:id="@+id/mIs"
-        android:layout_width="wrap_content"
-        app:kvl_text_hint="是否需要申请："
-        app:kvl_switch="true"
         app:kvl_has_line="false"
+        app:kvl_edit_hint="请输入需要的人数"
         app:kvl_has_right_arrow="false"
         android:layout_height="wrap_content">
     </com.xinfu.qianxiaozhuang.widgets.KeyValueLayout>

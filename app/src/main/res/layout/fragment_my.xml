@@ -155,7 +155,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:kvl_has_left_icon="true"
-                    app:kvl_text_hint="新建任务">
+                    app:kvl_text_hint="发布任务">
 
                 </com.xinfu.qianxiaozhuang.widgets.KeyValueLayout>
 

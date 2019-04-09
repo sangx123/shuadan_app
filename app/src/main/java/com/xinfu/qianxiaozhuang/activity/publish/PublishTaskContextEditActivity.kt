@@ -15,11 +15,13 @@ import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
+import com.orhanobut.hawk.Hawk
 import com.sendtion.xrichtext.RichTextEditor
 import com.tbruyelle.rxpermissions2.Permission
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.xinfu.qianxiaozhuang.R
 import com.xinfu.qianxiaozhuang.RequestCodeConfig
+import com.xinfu.qianxiaozhuang.SpConfig
 import com.xinfu.qianxiaozhuang.activity.BaseActivity
 import com.xinfu.qianxiaozhuang.api.Api
 import com.xinfu.qianxiaozhuang.api.BaseResult
@@ -79,11 +81,11 @@ class PublishTaskContextEditActivity : BaseActivity() {
                             callGallery()
                         } else if (permission.shouldShowRequestPermissionRationale) {
                             // Denied permission without ask never again
-                            toast("Denied permission without ask never again")
+                            toast("权限被禁止！")
                         } else {
                             // Denied permission with ask never again
                             // Need to go to the settings
-                            toast("Permission denied, can't enable the camera")
+                            toast("权限被禁止，请到设置界面开启权限！")
                         }
                     }
 
@@ -208,7 +210,10 @@ class PublishTaskContextEditActivity : BaseActivity() {
                     selectList?.let {
                         if (it.size > 0) {
                             //先上传图片
-                            uploadImage(it[0].path)
+                            //uploadImage(it[0].path)
+                            //uploadImageList(it)
+                            //默认只能1张张图片上传
+                            insertImagesSync(it[0].path)
                         }
                     }
 
@@ -217,132 +222,7 @@ class PublishTaskContextEditActivity : BaseActivity() {
         }
     }
 
-    private fun uploadImage(imagePath: String) {
-        LogUtil.e("sangxiang", "uploadImage");
-        showApiProgress()
-        getImageContent(imagePath)?.let {
-                        Api.getImageApiService().uploadImage(it)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(object : Observer<BaseResult<String>> {
-                        override fun onComplete() {
-                            hideApiProgress()
-                        }
 
-                        override fun onSubscribe(d: Disposable) {
-                            mDisposables.add(d)
-                        }
-
-                        override fun onNext(t: BaseResult<String>) {
-//                            t.result?.let {
-//                                toast("图片上传成功！")
-//                            }
-
-                            insertImagesSync("http://"+t.data!!)
-                        }
-
-                        override fun onError(e: Throwable) {
-                            e.printStackTrace()
-                        }
-
-                    })
-        }
-                //?:toast("图片无效,请重新选择图片")
-
-    }
-
-    private fun getImageContent(mPhotoPath: String = ""): MultipartBody.Part? {
-        if (mPhotoPath.isNullOrBlank()) {
-            return null
-        }
-        val MIMETYPE_IMAGE_JPEG = "image/jpeg"
-        val file = File(mPhotoPath)
-        return MultipartBody.Part.createFormData("image", file.getName(), RequestBody.create(MediaType.parse(MIMETYPE_IMAGE_JPEG), file))
-    }
-//    private val uploadListener = object : SingleFileUploadListener {
-//        override fun onStartGetToken(path: String) {
-//            LogUtil.e("sangxiang", "onStartGetToken ${path}");
-//        }
-//
-//        override fun onStartUpload(path: String) {
-//            //LogUtil.e(TAG, "onStartUpload $path");
-//        }
-//
-//        val progressMap = hashMapOf<String, Int>()
-//        override fun onUploadProgress(path: String, percentage: Int, bytesInProgress: Long, totalBytes: Long) {
-//            //LogUtil.e("sangxiang", "$path uploading: $percentage %")
-////            for (taskItem in mData) {
-////                taskItem.taskSubmit.executeImgArr.forEach {
-////                    if (it.localPath == path) {
-////                        it.progress = percentage
-////                        val lastProgress = progressMap.get(path)
-////                        if (lastProgress == null || lastProgress != percentage) {
-////                            progressMap.put(path, percentage)
-////                            mViewPositionMap.forEach {
-////                                LogUtil.e(TAG, "view map iterator ${it.key}   it.value.third?.taskItemID --> ${it.value.third?.taskItemID}  |  ${taskItem.taskItemID}")
-////                                if (it.value.third?.taskItemID == taskItem.taskItemID) {
-////                                    LogUtil.e(TAG, "notifiy data Item Changed:${it.key}")
-////                                    notifyItemChanged(it.key)
-////                                }
-////                            }
-////                        }
-////                    }
-////                }
-////            }
-//        }
-//
-//        override fun onUploadSucceed(path: String, resp: QiNiuResponseBean) {
-//
-//            MainHandler.post({
-//                hideApiProgress()
-//                this@PublishTaskContextEditActivity.toast("图片上传成功")
-//
-//                insertImagesSync(path)
-////                for (item in mAdapter.images) {
-////                    if (item.path == resp.key) {
-////                        item.uploadStatus = UploadStatus.SUCCESS.status
-////                        item.url = resp.url
-////                    }
-////                }
-////                mAdapter.notifyDataSetChanged()
-//            }, 0)
-////            for (taskItem in mData) {
-////                taskItem.taskSubmit.executeImgArr.forEach {
-////                    LogUtil.e(TAG, "onUploadSucceed: ${it.localPath} : ${resp.key} url-->${resp.url}");
-////                    if (it.localPath == resp.key) {
-//////                         it.imgUrl = resp.url
-////                        LogUtil.e(TAG, "onUploadSucceed:set image url!!!----!!!");
-////                        it.setImageUrl(resp.url)
-////                        it.uploadStatus = UploadStatus.SUCCESS
-////                        MainHandler.post({ notifyDataSetChanged() }, 0)
-////                    }
-////                    //save to db
-////                }
-////            }
-////            LogUtil.e(TAG, mData.joinToString { it.taskSubmit.toString() + "---" })
-//        }
-//
-//        override fun onUploadFailed(path: String) {
-//            MainHandler.post({
-//                hideApiProgress()
-//                this@PublishTaskContextEditActivity.toast("图片上传失败,请重新上传！")
-////                for (i in mAdapter.images.indices) {
-////                    var item =mAdapter.images[i]
-////                    if (item.path == path) {
-////                        item.uploadStatus = UploadStatus.FAIL.status
-////                        mAdapter.images.removeAt(i)
-////                    }
-////                }
-////                mAdapter.notifyDataSetChanged()
-//            }, 0)
-////                }
-////            }
-//        }
-//
-//        override fun onUploadCancel(path: String) {
-//            hideApiProgress()
-//        }
-//    }
 
     private fun insertImagesSync(path: String) {
         //insertDialog.show()
@@ -440,3 +320,171 @@ class PublishTaskContextEditActivity : BaseActivity() {
                 })
     }
 }
+
+
+//    //上传多张图片
+//    private fun uploadImageList(list:List<LocalMedia>){
+//        LogUtil.e("sangxiang", "uploadImage");
+//        showApiProgress()
+//        var map = HashMap<String, RequestBody>()
+//        map["content"] = RequestBody.create(MediaType.parse("multipart/form-data"), getEditData())
+//
+//        for(item in list){
+//            var file=File(item.path)
+//            map.put("imageList\";filename=\""+file.name,MultipartBody.create(MediaType.parse("multipart/form-data"),file))
+//        }
+//
+//        Api.getApiService().uploadImageList(map)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(object : Observer<BaseResult<String>> {
+//                    override fun onComplete() {
+//                        hideApiProgress()
+//                    }
+//
+//                    override fun onSubscribe(d: Disposable) {
+//                        mDisposables.add(d)
+//                    }
+//
+//                    override fun onNext(t: BaseResult<String>) {
+////                            t.result?.let {
+////                                toast("图片上传成功！")
+////                            }
+//
+//                        insertImagesSync("http://"+t.data!!)
+//                    }
+//
+//                    override fun onError(e: Throwable) {
+//                        e.printStackTrace()
+//                    }
+//
+//                })
+//    }
+//    //上传单张图片
+//    private fun uploadImage(imagePath: String) {
+//        LogUtil.e("sangxiang", "uploadImage");
+//        showApiProgress()
+//        getImageContent(imagePath)?.let {
+//                        Api.getImageApiService().uploadImage(it)
+//                        .subscribeOn(Schedulers.io())
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(object : Observer<BaseResult<String>> {
+//                        override fun onComplete() {
+//                            hideApiProgress()
+//                        }
+//
+//                        override fun onSubscribe(d: Disposable) {
+//                            mDisposables.add(d)
+//                        }
+//
+//                        override fun onNext(t: BaseResult<String>) {
+////                            t.result?.let {
+////                                toast("图片上传成功！")
+////                            }
+//
+//                            insertImagesSync("http://"+t.data!!)
+//                        }
+//
+//                        override fun onError(e: Throwable) {
+//                            e.printStackTrace()
+//                        }
+//
+//                    })
+//        }
+//                //?:toast("图片无效,请重新选择图片")
+//
+//    }
+
+//    private fun getImageContent(mPhotoPath: String = ""): MultipartBody.Part? {
+//        if (mPhotoPath.isNullOrBlank()) {
+//            return null
+//        }
+//        val MIMETYPE_IMAGE_JPEG = "image/jpeg"
+//        val file = File(mPhotoPath)
+//        return MultipartBody.Part.createFormData("image", file.getName(), RequestBody.create(MediaType.parse(MIMETYPE_IMAGE_JPEG), file))
+//    }
+//七牛图片上传
+//    private val uploadListener = object : SingleFileUploadListener {
+//        override fun onStartGetToken(path: String) {
+//            LogUtil.e("sangxiang", "onStartGetToken ${path}");
+//        }
+//
+//        override fun onStartUpload(path: String) {
+//            //LogUtil.e(TAG, "onStartUpload $path");
+//        }
+//
+//        val progressMap = hashMapOf<String, Int>()
+//        override fun onUploadProgress(path: String, percentage: Int, bytesInProgress: Long, totalBytes: Long) {
+//            //LogUtil.e("sangxiang", "$path uploading: $percentage %")
+////            for (taskItem in mData) {
+////                taskItem.taskSubmit.executeImgArr.forEach {
+////                    if (it.localPath == path) {
+////                        it.progress = percentage
+////                        val lastProgress = progressMap.get(path)
+////                        if (lastProgress == null || lastProgress != percentage) {
+////                            progressMap.put(path, percentage)
+////                            mViewPositionMap.forEach {
+////                                LogUtil.e(TAG, "view map iterator ${it.key}   it.value.third?.taskItemID --> ${it.value.third?.taskItemID}  |  ${taskItem.taskItemID}")
+////                                if (it.value.third?.taskItemID == taskItem.taskItemID) {
+////                                    LogUtil.e(TAG, "notifiy data Item Changed:${it.key}")
+////                                    notifyItemChanged(it.key)
+////                                }
+////                            }
+////                        }
+////                    }
+////                }
+////            }
+//        }
+//
+//        override fun onUploadSucceed(path: String, resp: QiNiuResponseBean) {
+//
+//            MainHandler.post({
+//                hideApiProgress()
+//                this@PublishTaskContextEditActivity.toast("图片上传成功")
+//
+//                insertImagesSync(path)
+////                for (item in mAdapter.images) {
+////                    if (item.path == resp.key) {
+////                        item.uploadStatus = UploadStatus.SUCCESS.status
+////                        item.url = resp.url
+////                    }
+////                }
+////                mAdapter.notifyDataSetChanged()
+//            }, 0)
+////            for (taskItem in mData) {
+////                taskItem.taskSubmit.executeImgArr.forEach {
+////                    LogUtil.e(TAG, "onUploadSucceed: ${it.localPath} : ${resp.key} url-->${resp.url}");
+////                    if (it.localPath == resp.key) {
+//////                         it.imgUrl = resp.url
+////                        LogUtil.e(TAG, "onUploadSucceed:set image url!!!----!!!");
+////                        it.setImageUrl(resp.url)
+////                        it.uploadStatus = UploadStatus.SUCCESS
+////                        MainHandler.post({ notifyDataSetChanged() }, 0)
+////                    }
+////                    //save to db
+////                }
+////            }
+////            LogUtil.e(TAG, mData.joinToString { it.taskSubmit.toString() + "---" })
+//        }
+//
+//        override fun onUploadFailed(path: String) {
+//            MainHandler.post({
+//                hideApiProgress()
+//                this@PublishTaskContextEditActivity.toast("图片上传失败,请重新上传！")
+////                for (i in mAdapter.images.indices) {
+////                    var item =mAdapter.images[i]
+////                    if (item.path == path) {
+////                        item.uploadStatus = UploadStatus.FAIL.status
+////                        mAdapter.images.removeAt(i)
+////                    }
+////                }
+////                mAdapter.notifyDataSetChanged()
+//            }, 0)
+////                }
+////            }
+//        }
+//
+//        override fun onUploadCancel(path: String) {
+//            hideApiProgress()
+//        }
+//    }

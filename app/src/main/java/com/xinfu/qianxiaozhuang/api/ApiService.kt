@@ -29,6 +29,14 @@ interface ApiService {
     @POST("api/upload/uploadImage")
     fun uploadImage(@Part image: MultipartBody.Part): Observable<BaseResult<String>>
 
+    /**
+     * 通用上传图片数组
+     */
+    @InterfaceUseCase("上传图片数组")
+    @Multipart
+    @POST("api/upload/uploadImageList")
+    fun uploadImageList(@PartMap  model:Map<String, RequestBody>): Observable<BaseResult<String>>
+
 
 //    /**
 //     * 登录相关
