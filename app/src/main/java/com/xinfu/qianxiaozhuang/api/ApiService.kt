@@ -38,6 +38,15 @@ interface ApiService {
     fun uploadImageList(@PartMap  model:Map<String, RequestBody>): Observable<BaseResult<String>>
 
 
+    //新的api
+    /**
+     * 发布创建任务
+     */
+    @InterfaceUseCase("上传图片数组")
+    @Multipart
+    @POST("api/task/createTask")
+    fun createTask(@PartMap  model:Map<String, RequestBody>): Observable<BaseResult<String>>
+
 //    /**
 //     * 登录相关
 //     */
