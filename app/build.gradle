@@ -92,9 +92,8 @@ android {
 
         /*开发*/
         DEV {
-
 //            buildConfigField("String", "HOST_URL", "\"http://47.110.198.243/\"")
-            buildConfigField("String", "HOST_URL", "\"http://192.168.0.176/\"")
+            buildConfigField("String", "HOST_URL", "\"http://192.168.42.56:8081/\"")
 
         }
         /*生产*/
@@ -209,7 +208,7 @@ dependencies {
     }
 
     //富文本
-    implementation ('com.github.sendtion:XRichText:1.8') {
+    implementation('com.github.sendtion:XRichText:1.8') {
         exclude group: 'com.android.support'
         exclude group: 'com.github.bumptech.glide'
     }
@@ -232,4 +231,8 @@ dependencies {
 
 dependencies {
     implementation 'com.android.support.constraint:constraint-layout:+'
+}
+
+dependencies {
+    implementation 'com.android.support:support-v4:28.+'
 }

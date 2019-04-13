@@ -75,4 +75,7 @@
     <string name="the_refund_is_expected_to_be_completed_within_1_3_working_days">预计1-3个工作日完成退款</string>
     <string name="audit_failed">审核未通过</string>
     <string name="yuan">元</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

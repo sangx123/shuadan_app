@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction
 import com.orhanobut.hawk.Hawk
 import com.xinfu.qianxiaozhuang.R
 import com.xinfu.qianxiaozhuang.SpConfig
+import com.xinfu.qianxiaozhuang.activity.home.HomeFragment
 import com.xinfu.qianxiaozhuang.activity.loan.LoanFragment
 import com.xinfu.qianxiaozhuang.activity.login.LoginActivity
 import com.xinfu.qianxiaozhuang.activity.my.MyFragment
@@ -17,7 +18,7 @@ import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity() {
     private var currentFragment: Fragment? = null
-    private var nav1Fragment: Fragment = LoanFragment()
+    private var nav1Fragment: Fragment = HomeFragment()
     private var nav2Fragment: Fragment = MyFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

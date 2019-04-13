@@ -47,6 +47,13 @@ interface ApiService {
     @POST("api/task/createTask")
     fun createTask(@PartMap  model:Map<String, RequestBody>): Observable<BaseResult<String>>
 
+    /**
+     * 获取首页的任务列表
+     */
+    @InterfaceUseCase("获取首页的任务列表")
+    @POST("api/task/getHomeTaskList")
+    fun getHomeTaskList(@Body model: HomeTaskParam): Observable<BaseResult<List<Task>>>
+
 //    /**
 //     * 登录相关
 //     */
