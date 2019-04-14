@@ -52,7 +52,22 @@ interface ApiService {
      */
     @InterfaceUseCase("获取首页的任务列表")
     @POST("api/task/getHomeTaskList")
-    fun getHomeTaskList(@Body model: HomeTaskParam): Observable<BaseResult<List<Task>>>
+    fun getHomeTaskList(@Body model: HomeTaskParam): Observable<BaseResult<ArrayList<Task>>>
+
+
+    /**
+     * 申请任务
+     */
+    @InterfaceUseCase("申请任务")
+    @POST("api/task/applyTask")
+    fun getApplyTask(@Body model: ApplyTaskParam): Observable<BaseResult<String>>
+
+    /**
+     * 我发布的任务列表
+     */
+    @InterfaceUseCase("我发布的任务列表")
+    @POST("api/task/getMyPublishTaskList")
+    fun getMyPublishTaskList(@Body model: HomeTaskParam): Observable<BaseResult<ArrayList<Task>>>
 
 //    /**
 //     * 登录相关

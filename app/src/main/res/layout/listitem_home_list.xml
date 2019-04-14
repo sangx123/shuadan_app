@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:padding="@dimen/dp_10"
+    android:orientation="vertical"
+    android:id="@+id/uiContainer"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mTitle"
+        android:text="帮购买童装的 一件衣服立马返回现金"
+        android:layout_marginBottom="@dimen/dp_7"
+        android:textSize="@dimen/sp_18"
+        />
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/mImage"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/dp_90"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginRight="@dimen/dp_5"
+            />
+        <ImageView
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_5"
+            android:id="@+id/mImage1"
+            android:layout_height="@dimen/dp_90"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:src="@mipmap/ic_launcher"
+            />
+        <ImageView
+            android:layout_marginLeft="@dimen/dp_5"
+            android:id="@+id/mImage2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/dp_90"
+            android:src="@mipmap/ic_launcher"
+            />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_marginBottom="@dimen/dp_10"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="任务本金："
+                android:textSize="@dimen/sp_14"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mBenjin"
+                android:text="33"
+                android:textColor="#FF8247"
+                android:textSize="@dimen/sp_16"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="（元），"
+                android:textSize="@dimen/sp_14"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="任务奖励："
+                android:textSize="@dimen/sp_14"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mJiangli"
+                android:text="4"
+                android:textColor="#FF8247"
+                android:textSize="@dimen/sp_16"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="（元）"
+                android:textSize="@dimen/sp_14"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/mHead"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40" />
+
+        <TextView
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:id="@+id/mName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_14"
+            />
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:text="发布时间："
+            />
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:id="@+id/mTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:textColor="#9E9E9E" />
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_14"
+                android:text= "剩余人数："
+                />
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dp_7"
+                android:id="@+id/mJindu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginRight="7dp"
+                android:textSize="@dimen/sp_14"
+                android:textColor="#9E9E9E" />
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_14"
+                android:text= "人"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

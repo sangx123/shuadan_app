@@ -88,8 +88,8 @@ class MyFragment : BaseFragment(){
         mPublishTask.setOnClickListener {
             startActivity<PublishTaskActivity>()
         }
-        mJiekuanjilu.setOnClickListener {
-            startActivity<MyJiekuanjiluActivity>()
+        mMangerPublishTask.setOnClickListener {
+            startActivity<MyPublishTaskListActivity>()
         }
 
 

@@ -115,7 +115,7 @@ class MTitleBar constructor(context: Context, attrs: AttributeSet? = null, defSt
         a.recycle()
         isFocusable = true
         isFocusableInTouchMode = true
-        mIvTitleLeft.setOnClickListener {
+        mLeftLayout.setOnClickListener {
             (context as Activity).finish()
         }
         mIvTitleRight.setOnClickListener {

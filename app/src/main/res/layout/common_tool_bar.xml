@@ -9,6 +9,7 @@
         android:background="#ffffff"
         >
     <RelativeLayout
+            android:id="@+id/mLeftLayout"
             android:layout_width="@dimen/dp_35"
             android:layout_height="@dimen/dp_35"
             android:layout_marginLeft="@dimen/dp_8"
@@ -17,9 +18,10 @@
 
     <ImageView
             android:id="@+id/mIvTitleLeft"
-            android:layout_width="@dimen/dp_35"
-            android:layout_height="@dimen/dp_35"
-            android:scaleType="center"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_back_black"
             />
         <ImageView
                 android:id="@+id/mRedDot"

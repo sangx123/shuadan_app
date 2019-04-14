@@ -79,7 +79,7 @@ public class RecycleViewHelper<T> {
         }
     }
     public  HorizontalDividerItemDecoration setHorizontalDividerItemDecoration(){
-       return setHorizontalDividerItemDecoration(true);
+       return setHorizontalDividerItemDecoration(false);
     }
 
     public  void addRecycleViewEmptyLayout(){

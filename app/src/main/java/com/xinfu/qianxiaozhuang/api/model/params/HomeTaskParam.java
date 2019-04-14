@@ -3,7 +3,7 @@ package com.xinfu.qianxiaozhuang.api.model.params;
 public class HomeTaskParam {
     private Integer pageSize = 10;
     private Integer pageNumber = 1;
-    private Integer state = 1;
+    private Integer state = 0;
 
     public Integer getState() {
         return state;

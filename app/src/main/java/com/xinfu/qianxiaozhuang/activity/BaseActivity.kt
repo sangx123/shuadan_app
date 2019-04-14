@@ -18,6 +18,7 @@ import java.util.*
  */
 
 abstract class BaseActivity : AppCompatActivity(),AnkoLogger {
+    lateinit var mActivity:BaseActivity
     var ApiRequestDialog: ApiRequestDialog?=null
 //    var mOnResultListener: ((mNotificationRequestCode: Int, resultCode: Int, data: Intent?) -> Unit)? = null
 
@@ -37,6 +38,7 @@ abstract class BaseActivity : AppCompatActivity(),AnkoLogger {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStatusBar()
+        mActivity=this
         mActivities.add(this)
         mDisposables = CompositeDisposable()
 //        ImmersionBar.with(this)

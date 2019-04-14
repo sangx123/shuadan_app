@@ -156,16 +156,14 @@
                     android:layout_height="wrap_content"
                     app:kvl_has_left_icon="true"
                     app:kvl_text_hint="发布任务">
-
                 </com.xinfu.qianxiaozhuang.widgets.KeyValueLayout>
 
                 <com.xinfu.qianxiaozhuang.widgets.KeyValueLayout
-                    android:id="@+id/mJiekuanjilu"
+                    android:id="@+id/mMangerPublishTask"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:kvl_has_left_icon="true"
-                    app:kvl_text_hint="借款记录">
-
+                    app:kvl_text_hint="已发布的任务">
                 </com.xinfu.qianxiaozhuang.widgets.KeyValueLayout>
 
                 <com.xinfu.qianxiaozhuang.widgets.KeyValueLayout

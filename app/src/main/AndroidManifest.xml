@@ -35,7 +35,9 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".activity.publish.PublishTaskContextEditActivity" android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+        <activity
+            android:name=".activity.publish.PublishTaskContextEditActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".activity.publish.PublishTaskActivity" />
         <activity android:name=".activity.my.MyBankListActivity" />
         <activity android:name=".activity.my.MyOrderActivity" />
@@ -119,6 +121,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <activity android:name=".activity.home.TaskDetailActivity" />
+        <activity android:name=".activity.my.MyPublishTaskListActivity"></activity>
     </application>
 
 </manifest>

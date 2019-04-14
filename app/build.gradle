@@ -93,7 +93,7 @@ android {
         /*开发*/
         DEV {
 //            buildConfigField("String", "HOST_URL", "\"http://47.110.198.243/\"")
-            buildConfigField("String", "HOST_URL", "\"http://192.168.42.56:8081/\"")
+            buildConfigField("String", "HOST_URL", "\"http://192.168.43.252:8081/\"")
 
         }
         /*生产*/
@@ -235,4 +235,12 @@ dependencies {
 
 dependencies {
     implementation 'com.android.support:support-v4:28.+'
+}
+
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}
+
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
 }
