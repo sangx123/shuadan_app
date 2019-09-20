@@ -1,10 +1,13 @@
 package com.xinfu.qianxiaozhuang.activity
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.widget.Toast
 import com.orhanobut.hawk.Hawk
+import com.tbruyelle.rxpermissions2.RxPermissions
 import com.xinfu.qianxiaozhuang.R
 import com.xinfu.qianxiaozhuang.SpConfig
 import com.xinfu.qianxiaozhuang.activity.home.HomeFragment
@@ -12,6 +15,7 @@ import com.xinfu.qianxiaozhuang.activity.loan.LoanFragment
 import com.xinfu.qianxiaozhuang.activity.login.LoginActivity
 import com.xinfu.qianxiaozhuang.activity.my.MyFragment
 import com.xinfu.qianxiaozhuang.utils.StatusBarUtil
+import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 
@@ -23,6 +27,45 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var rxPermissions= RxPermissions(this);
+//        rxPermissions.requestEach(Manifest.permission.CAMERA,
+//                Manifest.permission.RECORD_AUDIO)
+//                .subscribe(new Consumer<Permission>() {
+//                    @Override
+//                    public void accept(Permission permission) throws Exception {
+//                        if (permission.name.equals(Manifest.permission.CAMERA)) {
+//                            if (permission.granted) {
+//                                String jpgPath = getCacheDir() + "test.jpg";
+//                                //takePhotoByPath(jpgPath, 2);
+//                                Log.e(TAG, "accept: CAMERA" );
+//                            } else {
+//                                // 未获取权限
+//                                Toast.makeText(MainActivity.this, "您没有授权摄像头该权限，请在设置中打开授权", Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                        } else if (permission.name.equals(Manifest.permission.RECORD_AUDIO)) {
+//                            if (permission.granted) {
+//                                Log.e(TAG, "accept: RECORD_AUDIO" );
+//                                String jpgPath = getCacheDir() + "test.jpg";
+//                                //takePhotoByPath(jpgPath, 2);
+//                            } else {
+//                                // 未获取权限
+//                                Toast.makeText(MainActivity.this, "您没有授权录音该权限，请在设置中打开授权", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    }
+//                });
+        rxPermissions.request(Manifest.permission.CAMERA,
+                Manifest.permission.RECORD_AUDIO)
+                .subscribe(Consumer<Boolean> { aBoolean ->
+                    if (aBoolean!!) {
+                        //申请的权限全部允许
+                        Toast.makeText(this@MainActivity, "允许了权限!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        //只要有一个权限被拒绝，就会执行
+                        Toast.makeText(this@MainActivity, "未授权权限，部分功能不能使用", Toast.LENGTH_SHORT).show()
+                    }
+                })
         initUI()
     }
 
