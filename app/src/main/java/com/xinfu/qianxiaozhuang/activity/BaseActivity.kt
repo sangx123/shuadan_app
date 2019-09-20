@@ -37,7 +37,7 @@ abstract class BaseActivity : AppCompatActivity(),AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStatusBar()
+        //setStatusBar()
         mActivity=this
         mActivities.add(this)
         mDisposables = CompositeDisposable()
@@ -57,9 +57,9 @@ abstract class BaseActivity : AppCompatActivity(),AnkoLogger {
         */
     }
 
-    open fun setStatusBar() {
-        StatusBarUtil.setColor(this, resources.getColor(R.color.color_cccccc))
-    }
+//    open fun setStatusBar() {
+//        StatusBarUtil.setColor(this, resources.getColor(R.color.color_cccccc))
+//    }
 
     /**
      *

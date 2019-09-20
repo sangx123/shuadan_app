@@ -75,9 +75,6 @@ class MainActivity : BaseActivity() {
 
     }
 
-    override fun setStatusBar() {
-        StatusBarUtil.setTranslucentForImageViewInFragment(this@MainActivity, null)
-    }
 
     override fun onNewIntent(intent: Intent?) {
 

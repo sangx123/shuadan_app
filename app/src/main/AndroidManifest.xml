@@ -35,6 +35,18 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
+        <!-- 适配全面屏 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" />
+        <!-- 适配华为(hua wei)刘海屏 -->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
+        <!-- 适配小米(xiao mi)刘海屏 -->
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
         <activity
             android:name=".activity.publish.PublishTaskContextEditActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" />
@@ -58,16 +70,8 @@
         <activity android:name=".activity.loan.AuthUserBankActivity" />
         <activity android:name=".activity.loan.AuthUserContactActivity" />
         <activity android:name=".activity.loan.AuthUserInfoActivity" />
-        <activity android:name=".activity.loan.AuthCenterActivity" /> <!-- 适配全面屏 -->
-        <meta-data
-            android:name="android.max_aspect"
-            android:value="2.4" /> <!-- 适配华为(hua wei)刘海屏 -->
-        <meta-data
-            android:name="android.notch_support"
-            android:value="true" /> <!-- 适配小米(xiao mi)刘海屏 -->
-        <meta-data
-            android:name="notch.config"
-            android:value="portrait|landscape" />
+        <activity android:name=".activity.loan.AuthCenterActivity" />
+
 
         <activity
             android:name=".activity.login.SplashActivity"

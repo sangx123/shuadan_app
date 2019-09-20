@@ -15,6 +15,7 @@ import android.widget.EditText
 import android.widget.Toast
 import cn.smssdk.EventHandler
 import cn.smssdk.SMSSDK
+import com.gyf.barlibrary.ImmersionBar
 import com.orhanobut.hawk.Hawk
 import com.xiang.one.network.error.RxUtils
 import com.xinfu.qianxiaozhuang.activity.BaseActivity
@@ -95,6 +96,12 @@ class LoginActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
         SMSSDK.registerEventHandler(eventHandler)
         //t_input_account.setText("15821758991")
         //et_input_password.setText("123456")
+        ImmersionBar.with(this)
+                .statusBarView(top_view)//解决顶部和状态栏重叠问题
+                .statusBarDarkFont(true, 0.2f)//解决白色状态栏问题
+                //.navigationBarDarkIcon(true, 0.2f)//解决白色状态栏问题
+                .keyboardEnable(true) //解决软键盘与底部输入框冲突问题
+                .init()
     }
 
     private fun initView() {
