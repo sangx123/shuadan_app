@@ -2,6 +2,8 @@ package com.xinfu.qianxiaozhuang.activity.my
 
 import android.app.Activity
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v4.view.ViewPager
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -9,6 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.gyf.barlibrary.ImmersionBar
 import com.xinfu.qianxiaozhuang.R
 import com.xinfu.qianxiaozhuang.activity.BaseActivity
 import com.xinfu.qianxiaozhuang.activity.home.TaskDetailActivity
@@ -18,6 +21,7 @@ import com.xinfu.qianxiaozhuang.api.model.Task
 import com.xinfu.qianxiaozhuang.api.model.params.HomeTaskParam
 import com.xinfu.qianxiaozhuang.utils.DataUtil
 import com.xinfu.qianxiaozhuang.utils.recycleView.RecycleViewHelper
+import com.xinfu.qianxiaozhuang.utils.viewpager.MFragmentStatePagerAdapter
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -33,92 +37,29 @@ class MyPublishTaskListActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_publish_task_list)
-        mAdapter = object : BaseQuickAdapter<Task, BaseViewHolder>(R.layout.listitem_home_list, myPublishList) {
-            override fun convert(helper: BaseViewHolder?, item: Task) {
-
-                var img1=helper!!.getView<ImageView>(R.id.mImage)
-                var img2=helper!!.getView<ImageView>(R.id.mImage1)
-                var img3=helper!!.getView<ImageView>(R.id.mImage2)
-                var mHead=helper!!.getView<ImageView>(R.id.mHead)
-                img1.visibility= View.GONE
-                img2.visibility= View.GONE
-                img3.visibility= View.GONE
-                helper!!.setText(R.id.mBenjin,item.goodsPrice.toString())
-                helper!!.setText(R.id.mJiangli,item.workerPrice.toString())
-                helper!!.setText(R.id.mTitle,item.title)
-                helper!!.setText(R.id.mName,item.username)
-                helper!!.setText(R.id.mJindu,(item.workerNum-item.workingNum).toString())
-                helper!!.setText(R.id.mTime,DataUtil.getStringFromDate(item.createTime))
-                Glide.with(mActivity).load(R.mipmap.ic_launcher).apply(RequestOptions.bitmapTransform(CircleCrop())).into(mHead)
-                helper.getView<View>(R.id.uiContainer).setOnClickListener {
-                    //startActivity(TaskDetailActivity.param_data_task to item)
-
-                }
-                item.images?.let {
-                    when(it.size){
-                        3-> {
-                            img1.visibility = View.VISIBLE
-                            img2.visibility = View.VISIBLE
-                            img3.visibility = View.VISIBLE
-                            Glide.with(mActivity).load(it[0]).into(img1)
-                            Glide.with(mActivity).load(it[1]).into(img2)
-                            Glide.with(mActivity).load(it[2]).into(img3)
-                        }
-                        2->{
-                            img1.visibility = View.VISIBLE
-                            img2.visibility = View.VISIBLE
-                            img3.visibility = View.INVISIBLE
-                            Glide.with(mActivity).load(it[0]).into(img1)
-                            Glide.with(mActivity).load(it[1]).into(img2)
-                        }
-                        1->{
-                            img1.visibility = View.VISIBLE
-                            img2.visibility = View.INVISIBLE
-                            img3.visibility = View.INVISIBLE
-                            Glide.with(mActivity).load(it[0]).into(img1)
-                        }else->{
-
-                    }
-                    }
-                }
 
 
+        ImmersionBar.with(this)
+                .statusBarView(top_view)//解决顶部和状态栏重叠问题
+                .statusBarDarkFont(true, 0.2f)//解决白色状态栏问题
+                //.navigationBarDarkIcon(true, 0.2f)//解决白色状态栏问题
+                .keyboardEnable(true) //解决软键盘与底部输入框冲突问题
+                .init()
 
+        val tabTitles= arrayOf("待申请的任务", "进行中任务","已完成的任务")
+        var mAdapter= MFragmentStatePagerAdapter(supportFragmentManager, arrayOf(MyPublishTaskApplyingFragment(),MyPublishTaskOnGoingFragment(),MyPublishTaskFinishedFragment()).toMutableList() as List<Fragment>?, tabTitles)
 
+        mViewPager.adapter=mAdapter
+        mViewPager.offscreenPageLimit=2
+        mViewPager.setPageTransformer(false, ViewPager.PageTransformer { page, position ->
+            when {
+                position > 1 -> page.alpha = 1f
+                position >= 0 -> page.alpha = 1 - position
+                position > -1 -> page.alpha = 1 + position
+                else -> page.alpha = 0f
             }
-
-        }
-
-        mRecyclerView.adapter=mAdapter
-        mRecycleViewHelper= RecycleViewHelper(mActivity,mRecyclerView,mSwipeRefreshLayout,true, RecycleViewHelper.RecycleViewListener { pageIndex, pageSize ->
-            var model= HomeTaskParam()
-            model.pageSize=10
-            model.pageNumber=1
-            model.state=0
-            Api.getApiService().getMyPublishTaskList(model)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(object : Observer<BaseResult<ArrayList<Task>>> {
-                        override fun onComplete() {
-
-                        }
-
-                        override fun onSubscribe(d: Disposable) {
-                            mDisposables.add(d)
-                        }
-
-                        override fun onNext(t: BaseResult<ArrayList<Task>>) {
-                            mRecycleViewHelper.onApiSuccess(t,t.data)
-                        }
-
-                        override fun onError(e: Throwable) {
-                            e.printStackTrace()
-                            mRecycleViewHelper.onApiError()
-                        }
-
-                    })
         })
-
+        mTabLayout.setupWithViewPager(mViewPager)
     }
 
 }

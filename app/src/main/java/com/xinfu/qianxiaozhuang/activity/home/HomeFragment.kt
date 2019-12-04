@@ -15,6 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.gyf.barlibrary.ImmersionBar
 
 import com.xinfu.qianxiaozhuang.R
 import com.xinfu.qianxiaozhuang.activity.BaseFragment
@@ -47,6 +48,15 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class HomeFragment : BaseFragment() {
+    override fun initImmersionBar() {
+        ImmersionBar.with(this)
+                .statusBarView(top_view)//解决顶部和状态栏重叠问题
+                .statusBarDarkFont(true, 0.2f)//解决白色状态栏问题
+                //.navigationBarDarkIcon(true, 0.2f)//解决白色状态栏问题
+                .keyboardEnable(true) //解决软键盘与底部输入框冲突问题
+                .init()
+    }
+
     var homeList=ArrayList<Task>()
     lateinit var mAdapter:BaseQuickAdapter<Task,BaseViewHolder>
     lateinit var mRecycleViewHelper: RecycleViewHelper<Task>
@@ -66,11 +76,11 @@ class HomeFragment : BaseFragment() {
                 var img1=helper!!.getView<ImageView>(R.id.mImage)
                 var img2=helper!!.getView<ImageView>(R.id.mImage1)
                 var img3=helper!!.getView<ImageView>(R.id.mImage2)
-                var mHead=helper!!.getView<ImageView>(R.id.mHead)
+                var mPhoto=helper!!.getView<ImageView>(R.id.mPhoto)
                 img1.visibility=View.GONE
                 img2.visibility=View.GONE
                 img3.visibility=View.GONE
-                helper!!.setText(R.id.mBenjin,item.goodsPrice.toString())
+//                helper!!.setText(R.id.mBenjin,item.goodsPrice.toString())
                 helper!!.setText(R.id.mJiangli,item.workerPrice.toString())
                 helper!!.setText(R.id.mTitle,item.title)
                 helper.getView<View>(R.id.uiContainer).setOnClickListener {
@@ -79,10 +89,10 @@ class HomeFragment : BaseFragment() {
                 }
 
 
-                helper!!.setText(R.id.mJindu,(item.workerNum-item.workingNum).toString())
+               // helper!!.setText(R.id.mJindu,(item.workerNum-item.workingNum).toString())
                 helper!!.setText(R.id.mName,item.username)
                 helper!!.setText(R.id.mTime, DataUtil.getStringFromDate(item.createTime))
-                Glide.with(this@HomeFragment).load(R.mipmap.ic_launcher).apply(RequestOptions.bitmapTransform(CircleCrop())).into(mHead)
+                Glide.with(this@HomeFragment).load(R.mipmap.ic_launcher).apply(RequestOptions.bitmapTransform(CircleCrop())).into(mPhoto)
 
 
                 item.images?.let {
@@ -119,12 +129,11 @@ class HomeFragment : BaseFragment() {
             }
 
         }
-
         mRecyclerView.adapter=mAdapter
         mRecycleViewHelper= RecycleViewHelper(activity!!,mRecyclerView,mSwipeRefreshLayout,true, RecycleViewHelper.RecycleViewListener { pageIndex, pageSize ->
             var model= HomeTaskParam()
-            model.pageSize=10
-            model.pageNumber=1
+            model.pageSize=pageSize
+            model.pageNumber=pageIndex
             model.state=0
             Api.getApiService().getHomeTaskList(model)
                     .subscribeOn(Schedulers.io())
@@ -154,65 +163,65 @@ class HomeFragment : BaseFragment() {
 
     private fun initBanner() {
 
-        //初始化banner
-        var list= ArrayList<BannerBean>()
-        var model= BannerBean()
-        model.imageUrl="http://www.vz18.com/upload/201607/15/201607152321397655.png"
-        list.add(model)
-        model= BannerBean()
-        model.imageUrl="http://www.vz18.com/upload/201607/15/201607152333240637.png"
-        list.add(model)
-        mBannerContainer.removeAllViews()
-        mBannerContainer.addView(addBannerView(list, 5 * 1000))
+//        //初始化banner
+//        var list= ArrayList<BannerBean>()
+//        var model= BannerBean()
+//        model.imageUrl="http://www.vz18.com/upload/201607/15/201607152321397655.png"
+//        list.add(model)
+//        model= BannerBean()
+//        model.imageUrl="http://www.vz18.com/upload/201607/15/201607152333240637.png"
+//        list.add(model)
+//        mBannerContainer.removeAllViews()
+//        mBannerContainer.addView(addBannerView(list, 5 * 1000))
     }
-
-    //设置banner
-    private fun addBannerView(banners: List<BannerBean>, bannerInterval: Int): View {
-        // calculate banner height
-        val displayUtil = DisplayUtil(context)
-        val width = displayUtil.screenWidth
-        val height = width * 172 / 375
-        val view = LayoutInflater.from(context).inflate(R.layout.banner_view, null, false)
-        val banner = view.findViewById(R.id.dashboard_banner_raw) as BGABanner
-        banner.layoutParams.height = height
-        val imageUrls = ArrayList<String>(banners.size)
-        val contentStrs = ArrayList<String>(banners.size)
-
-        for (item in banners){
-            contentStrs.add("")
-            imageUrls.add(item.imageUrl)
-        }
-
-        banner.setAdapter { banner, itemView, model, position ->
-            val actionItem = banners[position]
-            if (!TextUtils.isEmpty(actionItem.imageUrl)&& itemView is ImageView){
-                activity?.let {
-                    Glide.with(it)
-                            .load(actionItem.imageUrl).into(itemView)
-                }
-
-            }
-
-        }
-        //Log.e("sangxiang", "addBannerView: "+banners.size());
-        banner.setAutoPlayAble(banners.size > 1)
-        banner.setData(imageUrls, contentStrs)
-        banner.setDelegate { banner, itemView, model, position ->
-            val actionItem = banners[position]
-            //点击往后台传递数据
-//            val call = KaishiApp.getApiService().insertBannerView(BannerView(actionItem.objId, Settings.Global.getMe().getId()))
-//            call.enqueue(object : KaishiCallback<String>(callList, context, true) {
-//                protected fun success(response: Response<String>) {}
 //
-//                protected fun dismissProgress() {}
-//            })
-//            callList.add(call)
-
-            // go to target screen
-        }
-
-        banner.setAutoPlayInterval(bannerInterval)
-        banner.startAutoPlay()
-        return view
-    }
+//    //设置banner
+//    private fun addBannerView(banners: List<BannerBean>, bannerInterval: Int): View {
+//        // calculate banner height
+//        val displayUtil = DisplayUtil(context)
+//        val width = displayUtil.screenWidth
+//        val height = width * 172 / 375
+//        val view = LayoutInflater.from(context).inflate(R.layout.banner_view, null, false)
+//        val banner = view.findViewById(R.id.dashboard_banner_raw) as BGABanner
+//        banner.layoutParams.height = height
+//        val imageUrls = ArrayList<String>(banners.size)
+//        val contentStrs = ArrayList<String>(banners.size)
+//
+//        for (item in banners){
+//            contentStrs.add("")
+//            imageUrls.add(item.imageUrl)
+//        }
+//
+//        banner.setAdapter { banner, itemView, model, position ->
+//            val actionItem = banners[position]
+//            if (!TextUtils.isEmpty(actionItem.imageUrl)&& itemView is ImageView){
+//                activity?.let {
+//                    Glide.with(it)
+//                            .load(actionItem.imageUrl).into(itemView)
+//                }
+//
+//            }
+//
+//        }
+//        //Log.e("sangxiang", "addBannerView: "+banners.size());
+//        banner.setAutoPlayAble(banners.size > 1)
+//        banner.setData(imageUrls, contentStrs)
+//        banner.setDelegate { banner, itemView, model, position ->
+//            val actionItem = banners[position]
+//            //点击往后台传递数据
+////            val call = KaishiApp.getApiService().insertBannerView(BannerView(actionItem.objId, Settings.Global.getMe().getId()))
+////            call.enqueue(object : KaishiCallback<String>(callList, context, true) {
+////                protected fun success(response: Response<String>) {}
+////
+////                protected fun dismissProgress() {}
+////            })
+////            callList.add(call)
+//
+//            // go to target screen
+//        }
+//
+//        banner.setAutoPlayInterval(bannerInterval)
+//        banner.startAutoPlay()
+//        return view
+//    }
 }

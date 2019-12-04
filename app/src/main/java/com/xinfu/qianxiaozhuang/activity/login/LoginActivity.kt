@@ -46,7 +46,7 @@ import java.util.concurrent.TimeUnit
 /**
  * 登录页
  */
-class LoginActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
+class LoginActivity : BaseActivity() {
 
     var checkCodeLoginFlag: Boolean = false //手机验证码登录方式
     var isBackToLoanFragment: Boolean = false //是否返回首页
@@ -107,13 +107,6 @@ class LoginActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
     private fun initView() {
 
 
-        //titlebar_withdrawsetTitle(resources.getString(R.string.login))
-        //titlebar_withdrawsetTitleStyle(Typeface.DEFAULT_BOLD)
-        //titlebar_withdrawsetTxtBackVisibility(View.VISIBLE)
-        //titlebar_withdrawsetTitleCustomTextColor(resources.getColor(R.color.black))
-        //titlebar_withdrawsetDrawableForTxtBack(R.drawable.icon_back)
-        //titlebar_withdrawsetBackWidgetOnClick(this@LoginActivity, null)
-
         var strcontent: String = getString(R.string.register_immediately_one)
 //        txt_register.setText(SpannableUtils.setTextForeground(strcontent, 0,
 //                strcontent.indexOf(getString(R.string.register))+1, resources.getColor(R.color.color_30a3ff)))
@@ -123,9 +116,9 @@ class LoginActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
         txt_get_check_code.setOnClickListener {
             getSMS()
         }
-        txt_check_login.setOnClickListener {
-            startActivity<CheckCodeLoginActivity>()
-        }
+//        txt_check_login.setOnClickListener {
+//            startActivity<CheckCodeLoginActivity>()
+//        }
 
         txt_register.setOnClickListener {
             startActivity<RegisterActivity>()
@@ -310,11 +303,6 @@ class LoginActivity : BaseActivity(), CommonTitleBar.IClickTxtBack {
 
     }
 
-    override fun onClickTxtBackCallBack() {
-
-        onBackPressed()
-
-    }
 
     override fun onBackPressed() {
 

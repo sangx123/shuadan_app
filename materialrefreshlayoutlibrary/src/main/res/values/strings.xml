@@ -1,8 +1,0 @@
-<resources>
-    <integer-array name="my_material_colors">
-        <item>@color/material_blue</item>
-        <item>@color/material_blue</item>
-        <item>@color/material_blue</item>
-        <item>@color/material_blue</item>
-    </integer-array>
-</resources>

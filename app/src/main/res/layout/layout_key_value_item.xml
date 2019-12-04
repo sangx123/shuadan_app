@@ -58,7 +58,7 @@
             android:textColor="#626471"
             android:textColorHint="@color/color_cccccc"
             android:singleLine="true"
-            android:textSize="18sp"
+            android:textSize="@dimen/sp_18"
             />
         <!--子view 的大小应该是 35dp x 35dp-->
         <LinearLayout

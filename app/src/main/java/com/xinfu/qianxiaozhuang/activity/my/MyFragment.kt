@@ -13,8 +13,7 @@ import com.xinfu.qianxiaozhuang.R
 import com.xinfu.qianxiaozhuang.activity.BaseFragment
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
-import com.cjj.MaterialRefreshLayout
-import com.cjj.MaterialRefreshListener
+import com.gyf.barlibrary.ImmersionBar
 import com.orhanobut.hawk.Hawk
 import com.xiang.one.network.error.RxUtils
 import com.xiang.one.utils.dialog.AlertDialogNew
@@ -46,6 +45,14 @@ private const val ARG_PARAM2 = "param2"
  *  我的主界面
  */
 class MyFragment : BaseFragment(){
+    override fun initImmersionBar() {
+        ImmersionBar.with(this)
+                .statusBarView(top_view)//解决顶部和状态栏重叠问题
+                .statusBarDarkFont(true, 0.2f)//解决白色状态栏问题
+                //.navigationBarDarkIcon(true, 0.2f)//解决白色状态栏问题
+                .keyboardEnable(true) //解决软键盘与底部输入框冲突问题
+                .init()
+    }
 
     var authentication: Boolean = false
     var perfectDialog: PerfectDialog? = null
@@ -63,37 +70,20 @@ class MyFragment : BaseFragment(){
 
     private fun initUI() {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            top_view.setVisibility(View.VISIBLE)
-            top_view.setLayoutParams(StatusBarUtil.getLayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, context))
-            //top_view.setBackgroundColor(resources.getColor(R.color.color_30b2fe))
-            //top_view.setBackgroundColor(R.drawable.drawable_my_status_bar)
-        } else {
-            top_view.setVisibility(View.GONE)
-        }
-
-        refresh.setWaveColor(resources.getColor(R.color.color_82C7ff))
-        refresh.setIsOverLay(false)
-        refresh.setWaveShow(true)
-        refresh.setMaterialRefreshListener(object : MaterialRefreshListener() {
-            override fun onRefresh(materialRefreshLayout: MaterialRefreshLayout) {
-
-                materialRefreshLayout.postDelayed({ getData() }, 2000)
-            }
-        })
-
         //var path = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552814176721&di=a3cc48bfab61dfd9a831ec7d6c67cc0d&imgtype=0&src=http%3A%2F%2Fwww.gupen.com%2Fuploads%2Fallimg%2F111101%2F11-111101093422328.jpg"
         Glide.with(this).load(R.mipmap.ic_launcher).apply(RequestOptions.bitmapTransform(CircleCrop())).into(mHead)
 
         mPublishTask.setOnClickListener {
             startActivity<PublishTaskActivity>()
         }
-        mMangerPublishTask.setOnClickListener {
-            startActivity<MyPublishTaskListActivity>()
+//        mMangerPublishTask.setOnClickListener {
+//            startActivity<MyPublishTaskListActivity>()
+//        }
+
+
+        mYue.setOnClickListener {
+            startActivity<MyQianbaoActivity>()
         }
-
-
-
         mYinhangka.setOnClickListener {
 
             if (authentication) {//已经实名认证(跳转银行卡列表)
@@ -108,8 +98,8 @@ class MyFragment : BaseFragment(){
             }
 
         }
-        mMoney.setOnClickListener {
-            startActivity<MyQianbaoActivity>()
+        mMyPublishedTask.setOnClickListener {
+            startActivity<MyPublishTaskListActivity>()
         }
         mOrder.setOnClickListener {
             startActivity<MyOrderActivity>()
@@ -150,9 +140,6 @@ class MyFragment : BaseFragment(){
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Observer<BaseResult<UserCenterModel>> {
                     override fun onComplete() {
-                        if (refresh.isRefreshing) {
-                            refresh.finishRefresh()
-                        }
                     }
 
                     override fun onSubscribe(d: Disposable) {
@@ -175,7 +162,6 @@ class MyFragment : BaseFragment(){
                     }
 
                     override fun onError(e: Throwable) {
-                        refresh.finishRefresh()
                         e.printStackTrace()
                     }
 

@@ -35,6 +35,8 @@ import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.view.OptionsPickerView
 import android.graphics.Color
 import com.bigkoo.pickerview.listener.OnOptionsSelectChangeListener
+import com.gyf.barlibrary.ImmersionBar
+import com.xinfu.qianxiaozhuang.utils.NumberValidationUtils
 import kotlinx.android.synthetic.main.layout_key_value_item.view.*
 import java.util.ArrayList
 
@@ -48,6 +50,12 @@ class PublishTaskActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_publish_task)
         initUI()
+        ImmersionBar.with(this)
+                .statusBarView(top_view)//解决顶部和状态栏重叠问题
+                .statusBarDarkFont(true, 0.2f)//解决白色状态栏问题
+                //.navigationBarDarkIcon(true, 0.2f)//解决白色状态栏问题
+                .keyboardEnable(true) //解决软键盘与底部输入框冲突问题
+                .init()
     }
 
     private fun initUI() {
@@ -57,30 +65,30 @@ class PublishTaskActivity : BaseActivity() {
             startActivityForResult(intent, RequestCodeConfig.request100)
         }
 
-        mBtn.setOnClickListener {
-            //error { content }
-        }
+//        mBtn.setOnClickListener {
+//            //error { content }
+//        }
         RxView.clicks(mBtn)
                 .throttleFirst(3, TimeUnit.SECONDS)//在一秒内只取第一次点击
                 .subscribe {
                     if(checkParam())
-                    uploadImageList(mTitle.edit_content.text.toString(),mBenjin.text.toString(),mJiangli.text.toString(),mPeopleNum.text.toString())
+                    uploadImageList(mTitle.edit_content.text.toString(),mJiangli.edit_content.text.toString())
 
                 }
-         val list = ArrayList<String>()
-        list.add("淘宝")
-        list.add("京东")
-        list.add("拼多多")
-        list.add("微信")
-        list.add("其他")
-        var pvOptions = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v ->
-            mTaskType.setResult(list[options1])
-        }).build<String>()
-        pvOptions.setPicker(list)
-        mTaskType.setOnClickListener {
-            //条件选择器
-            pvOptions.show()
-        }
+//         val list = ArrayList<String>()
+//        list.add("淘宝")
+//        list.add("京东")
+//        list.add("拼多多")
+//        list.add("微信")
+//        list.add("其他")
+//        var pvOptions = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, options2, options3, v ->
+//            mTaskType.setResult(list[options1])
+//        }).build<String>()
+//        pvOptions.setPicker(list)
+//        mTaskType.setOnClickListener {
+//            //条件选择器
+//            pvOptions.show()
+//        }
     }
 
     private fun checkParam(): Boolean {
@@ -92,38 +100,21 @@ class PublishTaskActivity : BaseActivity() {
             toast("请输入任务内容")
             return false
         }
-        if(mTaskType.mResult.isNullOrBlank()){
-            toast("请选择任务类型")
-            return false
-        }
-
-        if(mBenjin.text.toString().isNullOrBlank()){
-            toast("请输入任务本金")
-            return false
-        }
-        if(mJiangli.text.toString().isNullOrBlank()){
+        if(mJiangli.edit_content.text.toString().isNullOrBlank()){
             toast("请输入任务奖励")
             return false
         }else{
-            if(mJiangli.text.toString().toFloat()==0f){
-                toast("任务奖励必须大于0")
+            if(!NumberValidationUtils.isRealNumber(mJiangli.edit_content.text.toString())){
+                toast("请输入正确的任务奖励金额数字")
                 return false
             }
-        }
-        if(mPeopleNum.text.toString().isNullOrBlank()){
-            toast("请输入任务人数")
-            return false
-        }else{
-            if(mPeopleNum.text.toString().toFloat()==0f){
-                toast("任务人数必须大于0")
-                return false
-            }
+
         }
         return true
     }
 
     //上传多张图片
-    private fun uploadImageList(title: String, benJing: String, jiangLi: String, peopleNum: String) {
+    private fun uploadImageList(title: String, jiangLi: String) {
         val contentList = StringUtils.cutStringByLineTag(content)
         var list=ArrayList<String>()
         for (item in contentList) {
@@ -136,10 +127,7 @@ class PublishTaskActivity : BaseActivity() {
         var map = HashMap<String, RequestBody>()
         map["content"] = RequestBody.create(MediaType.parse("multipart/form-data"), content)
         map["title"] = RequestBody.create(MediaType.parse("multipart/form-data"), title)
-        map["benJing"] = RequestBody.create(MediaType.parse("multipart/form-data"), benJing)
         map["jiangLi"] = RequestBody.create(MediaType.parse("multipart/form-data"), jiangLi)
-        map["peopleNum"] = RequestBody.create(MediaType.parse("multipart/form-data"), peopleNum)
-        map["type"]= RequestBody.create(MediaType.parse("multipart/form-data"),mTaskType.mResult?:"")
         for (item in list) {
             var file = File(item)
             map.put("imageList\";filename=\"" + file.name, MultipartBody.create(MediaType.parse("multipart/form-data"), file))

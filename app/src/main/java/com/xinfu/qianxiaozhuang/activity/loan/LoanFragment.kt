@@ -13,8 +13,8 @@ import android.view.animation.Transformation
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.SeekBar
-import com.cjj.MaterialRefreshLayout
-import com.cjj.MaterialRefreshListener
+//import com.cjj.MaterialRefreshLayout
+//import com.cjj.MaterialRefreshListener
 import com.xiang.one.network.error.RxUtils
 import com.xinfu.qianxiaozhuang.R
 import com.xinfu.qianxiaozhuang.adapter.ImagePagerAdapter
@@ -47,6 +47,9 @@ private const val ARG_PARAM2 = "param2"
  * 借款主界面
  */
 class LoanFragment : BaseFragment(), UniversalDialog.IHitSureCallBack {
+    override fun initImmersionBar() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     var universalDialog: UniversalDialog? = null
     var universalDialogTag: String = "LoanFragment_UniversalDialog"
@@ -84,15 +87,15 @@ class LoanFragment : BaseFragment(), UniversalDialog.IHitSureCallBack {
             top_view.setVisibility(View.GONE)
         }
 
-        refresh.setWaveColor(resources.getColor(R.color.color_82C7ff))
-        refresh.setIsOverLay(false)
-        refresh.setWaveShow(true)
-        refresh.setMaterialRefreshListener(object : MaterialRefreshListener() {
-            override fun onRefresh(materialRefreshLayout: MaterialRefreshLayout) {
-
-                materialRefreshLayout.postDelayed({ getData() }, 2000)
-            }
-        })
+//        refresh.setWaveColor(resources.getColor(R.color.color_82C7ff))
+//        refresh.setIsOverLay(false)
+//        refresh.setWaveShow(true)
+//        refresh.setMaterialRefreshListener(object : MaterialRefreshListener() {
+//            override fun onRefresh(materialRefreshLayout: MaterialRefreshLayout) {
+//
+//                materialRefreshLayout.postDelayed({ getData() }, 2000)
+//            }
+//        })
 
         my_seekbar.setOnTouchListener(object : View.OnTouchListener {
 
@@ -263,9 +266,9 @@ class LoanFragment : BaseFragment(), UniversalDialog.IHitSureCallBack {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Observer<BaseResult<HomeModel>> {
                     override fun onComplete() {
-                        if (refresh.isRefreshing) {
-                            refresh.finishRefresh()
-                        }
+//                        if (refresh.isRefreshing) {
+//                            refresh.finishRefresh()
+//                        }
                     }
 
                     override fun onSubscribe(d: Disposable) {
@@ -318,7 +321,7 @@ class LoanFragment : BaseFragment(), UniversalDialog.IHitSureCallBack {
                     }
 
                     override fun onError(e: Throwable) {0
-                        refresh.finishRefresh()
+                        //refresh.finishRefresh()
                         e.printStackTrace()
                     }
 

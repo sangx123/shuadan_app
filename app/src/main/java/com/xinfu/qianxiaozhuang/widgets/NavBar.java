@@ -81,7 +81,7 @@ public class NavBar extends RelativeLayout {
         mNav1 = findViewById(R.id.nav1);
         mNav1Icon = (ImageView) findViewById(R.id.nav1_icon);
         mNav1Label = (TextView) findViewById(R.id.nav1_label);
-        mNav1Label.setText("借款");
+        mNav1Label.setText("首页");
 
         mNav2 = findViewById(R.id.nav2);
         mNav2Icon = (ImageView) findViewById(R.id.nav2_icon);

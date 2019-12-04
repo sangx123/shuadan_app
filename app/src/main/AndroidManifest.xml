@@ -35,6 +35,7 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
+
         <!-- 适配全面屏 -->
         <meta-data
             android:name="android.max_aspect"
@@ -47,6 +48,7 @@
         <meta-data
             android:name="notch.config"
             android:value="portrait|landscape" />
+
         <activity
             android:name=".activity.publish.PublishTaskContextEditActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" />
@@ -71,8 +73,6 @@
         <activity android:name=".activity.loan.AuthUserContactActivity" />
         <activity android:name=".activity.loan.AuthUserInfoActivity" />
         <activity android:name=".activity.loan.AuthCenterActivity" />
-
-
         <activity
             android:name=".activity.login.SplashActivity"
             android:theme="@style/StartAppTheme">
@@ -127,7 +127,8 @@
         </provider>
 
         <activity android:name=".activity.home.TaskDetailActivity" />
-        <activity android:name=".activity.my.MyPublishTaskListActivity"></activity>
+        <activity android:name=".activity.my.MyPublishTaskListActivity" />
+        <activity android:name=".activity.my.MyPublishTaskApplyingListActivity"></activity>
     </application>
 
 </manifest>

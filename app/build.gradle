@@ -93,13 +93,13 @@ android {
         /*开发*/
         DEV {
 //            buildConfigField("String", "HOST_URL", "\"http://47.110.198.243/\"")
-            buildConfigField("String", "HOST_URL", "\"http://192.168.43.252:8081/\"")
+            buildConfigField("String", "HOST_URL", "\"http://10.11.1.2:8081/\"")
 
         }
         /*生产*/
         PRO {
 //            buildConfigField("String", "HOST_URL", "\"http://47.110.198.243/\"")
-            buildConfigField("String", "HOST_URL", "\"http://188.131.235.188:8081/\"")
+            buildConfigField("String", "HOST_URL", "\"http://10.11.1.2:8081/\"")
         }
 
     }
@@ -197,7 +197,7 @@ dependencies {
 
     //全面屏适配
     implementation rootProject.ext.immersionbar
-    implementation project(':materialrefreshlayoutlibrary')
+    //implementation project(':materialrefreshlayoutlibrary')
     implementation project(':coverflowlibrary')
 
     //滚轮控件
@@ -239,6 +239,22 @@ dependencies {
 
 dependencies {
     implementation 'com.android.support.constraint:constraint-layout:+'
+}
+
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}
+
+dependencies {
+    implementation 'com.android.support:support-v4:28.+'
+}
+
+dependencies {
+    implementation 'com.android.support:support-v4:28.+'
+}
+
+dependencies {
+    implementation 'com.android.support:support-v4:28.+'
 }
 
 dependencies {

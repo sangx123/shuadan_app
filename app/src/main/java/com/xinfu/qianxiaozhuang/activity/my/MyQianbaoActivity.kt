@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
+import com.gyf.barlibrary.ImmersionBar
 import com.xiang.one.network.error.RxUtils
 import com.xinfu.qianxiaozhuang.R
 import com.xinfu.qianxiaozhuang.activity.BaseActivity
@@ -30,8 +31,14 @@ class MyQianbaoActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_qianbao)
-       initUI()
-        getMyWallet()
+        initUI()
+        ImmersionBar.with(this)
+                .statusBarView(top_view)//解决顶部和状态栏重叠问题
+                .statusBarDarkFont(true, 0.2f)//解决白色状态栏问题
+                //.navigationBarDarkIcon(true, 0.2f)//解决白色状态栏问题
+                .keyboardEnable(true) //解决软键盘与底部输入框冲突问题
+                .init()
+//        getMyWallet()
     }
     private fun initUI() {
         //titlebar_withdrawsetTitle("我的钱包")
@@ -40,9 +47,10 @@ class MyQianbaoActivity : BaseActivity() {
         //titlebar_withdrawsetTitleCustomTextColor(resources.getColor(R.color.black))
         //titlebar_withdrawsetDrawableForTxtBack(R.drawable.icon_back)
         //titlebar_withdrawsetBackWidgetOnClick({finish()}, null)
-        mBtn.setOnClickListener {
-            toast("需满100元才能提现")
-        }
+        mYue.setResult("70元")
+//        mBtn.setOnClickListener {
+//            toast("需满100元才能提现")
+//        }
     }
 
     /**
@@ -66,13 +74,13 @@ class MyQianbaoActivity : BaseActivity() {
 
                     override fun onNext(t: BaseResult<MyWalletModel>) {
                         t.result?.let {
-                            mMoney.setResult(it.cash.toString()+"元")
-                            mYinghangka.setDest(it.authenticateBank!!)
-                            mShouxufei.setResult(it.handlingFee.toString()+"元")
-                            var left =if(it.cash-it.handlingFee>0){it.cash-it.handlingFee} else{0}
-                            mShijidaozhang.setResult(left.toString()+"元")
-                            mMoney.tv_content.textColor= resources.getColor(R.color.color_30A3FF)
-                            mDesc.text="2、成功提现，手续费${it.handlingFee}元/次。"
+//                            mMoney.setResult(it.cash.toString()+"元")
+//                            mYinghangka.setDest(it.authenticateBank!!)
+//                            mShouxufei.setResult(it.handlingFee.toString()+"元")
+//                            var left =if(it.cash-it.handlingFee>0){it.cash-it.handlingFee} else{0}
+//                            mShijidaozhang.setResult(left.toString()+"元")
+//                            mMoney.tv_content.textColor= resources.getColor(R.color.color_30A3FF)
+//                            mDesc.text="2、成功提现，手续费${it.handlingFee}元/次。"
 
                         }
 

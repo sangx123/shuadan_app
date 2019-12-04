@@ -1,11 +1,14 @@
 package com.xinfu.qianxiaozhuang.activity
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.gyf.barlibrary.SimpleImmersionFragment
 import com.xinfu.qianxiaozhuang.dialog.ApiRequestDialog
 import io.reactivex.disposables.CompositeDisposable
 
@@ -13,12 +16,18 @@ import io.reactivex.disposables.CompositeDisposable
  * 02/02/2018  11:28 AM
  * Created by Zhang.
  */
-abstract class BaseFragment : Fragment(){
+abstract class BaseFragment : SimpleImmersionFragment(){
     var ApiRequestDialog: ApiRequestDialog?=null
     //添加支持
     public lateinit var mDisposables: CompositeDisposable
+    public lateinit var mActivity: FragmentActivity
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
     override fun onAttach(context: Context?) {
         super.onAttach(context)
+        mActivity=activity!!
         mDisposables = CompositeDisposable()
     }
 

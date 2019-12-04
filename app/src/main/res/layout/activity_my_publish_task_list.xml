@@ -6,30 +6,57 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.my.MyPublishTaskListActivity">
-
+    <View
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white" />
     <com.xinfu.qianxiaozhuang.widgets.MTitleBar
         android:layout_width="wrap_content"
-        app:title="已发布的任务"
+        app:title="我发布的任务"
         android:layout_height="wrap_content">
     </com.xinfu.qianxiaozhuang.widgets.MTitleBar>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:layout_marginTop="@dimen/dp_10"
+    <!--<android.support.v4.widget.SwipeRefreshLayout-->
+        <!--android:layout_marginTop="@dimen/dp_10"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:id="@+id/mSwipeRefreshLayout"-->
+        <!--android:layout_height="match_parent">-->
+        <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/mRecyclerView"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:choiceMode="singleChoice"-->
+            <!--android:divider="@null"-->
+            <!--android:overScrollMode="never"-->
+            <!--android:fadingEdge="none"-->
+            <!--android:listSelector="@android:color/transparent"-->
+            <!--android:scrollbarStyle="outsideOverlay"-->
+            <!--app:layoutManager="android.support.v7.widget.LinearLayoutManager"-->
+            <!--/>-->
+    <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+    <android.support.design.widget.TabLayout
+        android:id="@+id/mTabLayout"
         android:layout_width="match_parent"
-        android:id="@+id/mSwipeRefreshLayout"
-        android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/mRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:choiceMode="singleChoice"
-            android:divider="@null"
-            android:overScrollMode="never"
-            android:fadingEdge="none"
-            android:listSelector="@android:color/transparent"
-            android:scrollbarStyle="outsideOverlay"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            />
-    </android.support.v4.widget.SwipeRefreshLayout>
+        android:layout_height="50dp"
+        app:tabIndicatorColor="#22a2e4"
+        app:tabBackground="@color/white"
+        app:tabSelectedTextColor="#22a2e4"
+        app:tabTextColor="#7d7d7d"
+        app:tabMode="fixed"
+        app:tabGravity="fill"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#e0e0e0"
+        android:layout_alignParentBottom="true"
+        />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/mViewPager"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never">
+    </android.support.v4.view.ViewPager>
 
 </LinearLayout>

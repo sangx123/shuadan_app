@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.widget.Toast
+import com.gyf.barlibrary.ImmersionBar
 import com.orhanobut.hawk.Hawk
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.xinfu.qianxiaozhuang.R
@@ -67,6 +68,13 @@ class MainActivity : BaseActivity() {
                     }
                 })
         initUI()
+        ImmersionBar.with(this)
+//                .statusBarView(top_view)//解决顶部和状态栏重叠问题
+//                .statusBarDarkFont(true, 0.2f)//解决白色状态栏问题
+//                //.navigationBarDarkIcon(true, 0.2f)//解决白色状态栏问题
+//                .keyboardEnable(true) //解决软键盘与底部输入框冲突问题
+                .init()
+
     }
 
     private fun initUI() {

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import com.gyf.barlibrary.ImmersionBar
 import com.orhanobut.hawk.Hawk
 import com.sendtion.xrichtext.RichTextEditor
 import com.xinfu.qianxiaozhuang.R
@@ -61,6 +62,12 @@ class TaskDetailActivity : BaseActivity() {
         uiBtnSubmit.setOnClickListener {
             getApplyTask()
         }
+        ImmersionBar.with(this)
+                .statusBarView(top_view)//解决顶部和状态栏重叠问题
+                .statusBarDarkFont(true, 0.2f)//解决白色状态栏问题
+                //.navigationBarDarkIcon(true, 0.2f)//解决白色状态栏问题
+                .keyboardEnable(true) //解决软键盘与底部输入框冲突问题
+                .init()
 
     }
 
