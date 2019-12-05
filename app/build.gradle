@@ -93,13 +93,13 @@ android {
         /*开发*/
         DEV {
 //            buildConfigField("String", "HOST_URL", "\"http://47.110.198.243/\"")
-            buildConfigField("String", "HOST_URL", "\"http://10.11.1.2:8081/\"")
+            buildConfigField("String", "HOST_URL", "\"http://39.105.172.56:8081/\"")
 
         }
         /*生产*/
         PRO {
 //            buildConfigField("String", "HOST_URL", "\"http://47.110.198.243/\"")
-            buildConfigField("String", "HOST_URL", "\"http://10.11.1.2:8081/\"")
+            buildConfigField("String", "HOST_URL", "\"http://39.105.172.56:8081/\"")
         }
 
     }
